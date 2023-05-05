@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS Equipment;
 CREATE TABLE Equipment(
     equipmentID int AUTO_INCREMENT NOT NULL UNIQUE,
     equipmentName varchar(50) NOT NULL,
-    equipmentDescription varchar(50) NOT NULL,
+    equipmentDescription varchar(500) NOT NULL,
     equipmentCost int NOT NULL,
     equipmentStock int NOT NULL,
     productTypeID int NOT NULL,
@@ -83,4 +83,128 @@ CREATE TABLE Reviews(
     FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
 
 );
+
+-- Example Data
+
+INSERT INTO Users (
+    firstName,
+    lastName,
+    address,
+    phoneNumber,
+    email
+)
+VALUES
+(
+    "Jon",
+    "Doe",
+    "12345 Freeway St.",
+    "123-423-2345",
+    "jonDo@bye.com"
+),
+(
+    "Steve",
+    "Parks",
+    "42235 Some Ave.",
+    "753-833-2355",
+    "steveParks@outlook.com"
+),
+(
+    "Jeff",
+    "Bezzels",
+    "235 Poly Circle",
+    "962-434-57243",
+    "jeffBez@amazing.com"
+),
+(
+    "Alvin",
+    "Loops",
+    "3842 Byte Blvd.",
+    "864-246-5723",
+    "alvLoops@code.com"
+);
+
+
+
+INSERT INTO Orders (
+    userID,
+    orderDate,
+    numItems,
+    totalCost
+)
+VALUES
+(
+    (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
+    '2022-05-23',
+    "5",
+    "850"
+),
+(
+    (SELECT userID from Users where firstName = 'Jon' and lastName = 'Doe'),
+    '2012-10-04',
+    "7",
+    "2500"
+),
+(
+    (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
+    '2021-08-13',
+    "15",
+    "6523"
+);
+
+
+INSERT INTO Equipment (
+    equipmentName,
+    equipmentDescription,
+    equipmentCost,
+    equipmentStock
+    -- productTypeID
+
+)
+VALUES
+(
+    "Squat Rack",
+    "A metal rack or cage consisting of support pillars with adjustable bars and hooks",
+    "450",
+    "21"
+),
+(
+    "Treadmill",
+    "for indoor use that simulates walking, jogging, or running",
+    "330",
+    "11"
+),
+(
+    "Yoga Mat",
+    "For your yoga classes!",
+    "20",
+    "30"
+);
+
+
+
+
+-- Data Results
+select * from Users;
+select * from Orders;
+select * from Equipment;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
