@@ -181,13 +181,45 @@ VALUES
 );
 
 
+-- INSERT INTO ProductType (
+--     typeDescription,
+-- )
+-- VALUES
+-- (
+--     ""
+-- )
 
+INSERT INTO Reviews (
+    userID,
+    equipmentID,
+    reviewDescription,
+    stars
+)
+VALUES
+(
+    (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
+    (SELECT equipmentID from Equipment where equipmentName = "Squat Rack"),
+    "This equipment is really amazing and I really love it. I would recommend to others.",
+    "4"
+),
+(
+    (SELECT userID from Users where firstName = 'Jon' and lastName = 'Doe'),
+    (SELECT equipmentID from Equipment where equipmentName = "Treadmill"),
+    "This equipment is alright. It is just good for running.",
+    "2"
+),
+(
+    (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
+    (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
+    "This equipment is bad. Only good for stretching but you can just stretch on the floor.",
+    "1"
+);
 
 -- Data Results
 select * from Users;
 select * from Orders;
 select * from Equipment;
-
+select * from Reviews;
 
 
 
