@@ -7,6 +7,14 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS OrderEquipment;
+DROP TABLE IF EXISTS Equipment;
+DROP TABLE IF EXISTS ProductType;
+DROP TABLE IF EXISTS Reviews;
+
+
+
 CREATE TABLE Users (
     userID int AUTO_INCREMENT NOT NULL UNIQUE,
     firstName varchar(50) NOT NULL,
@@ -20,7 +28,7 @@ CREATE TABLE Users (
     PRIMARY KEY (userID)
 );
 
-DROP TABLE IF EXISTS Orders;
+
 CREATE TABLE Orders(
    
     orderID int AUTO_INCREMENT NOT NULL UNIQUE,
@@ -30,13 +38,15 @@ CREATE TABLE Orders(
     totalCost decimal(19,2) NOT NULL,
 
     -- userid foreign key
-    FOREIGN KEY (userID) REFERENCES Users(userID),
-    PRIMARY KEY (orderID)
+    
+    PRIMARY KEY (orderID),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+        ON DELETE CASCADE
 );
 
 
 
-DROP TABLE IF EXISTS OrderEquipment;
+
 CREATE TABLE OrderEquipment(
 
     orderID int,
@@ -45,14 +55,16 @@ CREATE TABLE OrderEquipment(
     amount int NOT NULL,
     cost decimal(19,2) NOT NULL,
 
-    FOREIGN KEY (orderID) REFERENCES Orders(orderID),
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
+    
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
+    FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+        ON DELETE CASCADE
 
 
 
 );
 
-DROP TABLE IF EXISTS Equipment;
+
 CREATE TABLE Equipment(
     equipmentID int AUTO_INCREMENT NOT NULL UNIQUE,
     equipmentName varchar(50) NOT NULL,
@@ -68,14 +80,14 @@ CREATE TABLE Equipment(
 );
 
 
-DROP TABLE IF EXISTS ProductType;
+
 CREATE TABLE ProductType(
     productTypeID int NOT NULL,
     typeDescription varchar(50) NOT NULL,
     PRIMARY KEY (productTypeID)
 );
 
-DROP TABLE IF EXISTS Reviews;
+
 CREATE TABLE Reviews(
     reviewID int AUTO_INCREMENT NOT NULL UNIQUE,
     userID int, 
@@ -85,12 +97,14 @@ CREATE TABLE Reviews(
     stars int NOT NULL,
 
     PRIMARY KEY(reviewID),
-    FOREIGN KEY (userID) REFERENCES Users(userID),
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
+  
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
+    FOREIGN KEY (userID) REFERENCES Users(userID) 
+        ON DELETE CASCADE
 
 );
 
--- Example Data
+-- -- Example Data
 
 INSERT INTO Users (
     firstName,
@@ -276,14 +290,14 @@ VALUES
 -- Data Results
 select * from Users;
 select * from Orders;
-select * from Equipment;
-select * from Reviews;
-select * from ProductType;
-select * from OrderEquipment;
+-- select * from Equipment;
+-- select * from Reviews;
+-- select * from ProductType;
+-- select * from OrderEquipment;
 
 
 
-
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 
