@@ -70,7 +70,7 @@ CREATE TABLE Equipment(
     equipmentID int AUTO_INCREMENT NOT NULL UNIQUE,
     equipmentName varchar(50) NOT NULL,
     equipmentDescription varchar(500) NOT NULL,
-    equipmentCost int NOT NULL,
+    equipmentCost decimal(19,2) NOT NULL,
     equipmentStock int NOT NULL,
     productTypeID int NOT NULL,
 
@@ -274,19 +274,19 @@ VALUES
     (SELECT orderID from Orders where userID = 3),
     (SELECT equipmentID from Equipment where equipmentName = "Squat Rack"),
     5,
-    200
+    (SELECT equipmentCost from Equipment where equipmentName = "Squat Rack") * amount
 ),
 (
     (SELECT orderID from Orders where userID = 4),
     (SELECT equipmentID from Equipment where equipmentName = "Treadmill"),
     2,
-    340
+    (SELECT equipmentCost from Equipment where equipmentName = "Treadmill") * amount
 ),
 (
     (SELECT orderID from Orders where userID = 1),
     (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
     3,
-    850
+    (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
 );
 
 -- Data Results
