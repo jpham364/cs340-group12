@@ -56,7 +56,8 @@ CREATE TABLE OrderEquipment(
     cost decimal(19,2) NOT NULL,
 
     
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
+        ON DELETE CASCADE,
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
         ON DELETE CASCADE
 
@@ -98,7 +99,8 @@ CREATE TABLE Reviews(
 
     PRIMARY KEY(reviewID),
   
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
+        ON DELETE CASCADE,
     FOREIGN KEY (userID) REFERENCES Users(userID) 
         ON DELETE CASCADE
 
@@ -288,12 +290,12 @@ VALUES
 );
 
 -- Data Results
-select * from Users;
+-- select * from Users;
 select * from Orders;
--- select * from Equipment;
+select * from Equipment;
 -- select * from Reviews;
 -- select * from ProductType;
--- select * from OrderEquipment;
+select * from OrderEquipment;
 
 
 
