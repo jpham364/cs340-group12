@@ -6,6 +6,7 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- Droppinp tables
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS OrderEquipment;
@@ -42,6 +43,7 @@ CREATE TABLE Orders(
     PRIMARY KEY (orderID),
     FOREIGN KEY (userID) REFERENCES Users(userID)
         ON DELETE CASCADE
+
 );
 
 
@@ -142,35 +144,37 @@ VALUES
     "Loops",
     "3842 Byte Blvd.",
     "864-246-5723",
-    "alvLoops@code.com"
+    "avlLoops@code.com"
 );
 
 
 
 INSERT INTO Orders (
     userID,
-    orderDate,
-    numItems,
-    totalCost
+    orderDate
+    -- numItems,
+    -- totalCost
 )
 VALUES
 (
+    -- Utilzing SUM to calculate the total costs
+    -- https://www.w3schools.com/sql/sql_count_avg_sum.asp
     (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
-    '2022-05-23',
-    "5",
-    "850"
+    '2022-05-23'
+    -- 8,
+    -- "850"
 ),
 (
     (SELECT userID from Users where firstName = 'Jon' and lastName = 'Doe'),
-    '2012-10-04',
-    "7",
-    "2500"
+    '2012-10-04'
+    -- 7,
+    -- "2500"
 ),
 (
     (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
-    '2021-08-13',
-    "15",
-    "6523"
+    '2021-08-13'
+    -- "15",
+    -- "6523"
 );
 
 
@@ -186,22 +190,22 @@ VALUES
 (
     "Squat Rack",
     "A metal rack or cage consisting of support pillars with adjustable bars and hooks",
-    "450",
-    "21",
+    450,
+    21,
     2
 ),
 (
     "Treadmill",
     "for indoor use that simulates walking, jogging, or running",
-    "330",
-    "11",
+    330,
+    11,
     3
 ),
 (
     "Yoga Mat",
     "For your yoga classes!",
-    "20",
-    "30",
+    20,
+    30,
     5
 );
 
@@ -245,19 +249,19 @@ VALUES
     (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
     (SELECT equipmentID from Equipment where equipmentName = "Squat Rack"),
     "This equipment is really amazing and I really love it. I would recommend to others.",
-    "4"
+    4
 ),
 (
     (SELECT userID from Users where firstName = 'Jon' and lastName = 'Doe'),
     (SELECT equipmentID from Equipment where equipmentName = "Treadmill"),
     "This equipment is alright. It is just good for running.",
-    "2"
+    2
 ),
 (
     (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
     (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
     "This equipment is bad. Only good for stretching but you can just stretch on the floor.",
-    "1"
+    1
 );
 
 INSERT INTO OrderEquipment(
@@ -277,6 +281,13 @@ VALUES
     (SELECT equipmentCost from Equipment where equipmentName = "Squat Rack") * amount
 ),
 (
+    (SELECT orderID from Orders where userID = 3),
+    (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
+    1,
+    (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
+
+),
+(
     (SELECT orderID from Orders where userID = 4),
     (SELECT equipmentID from Equipment where equipmentName = "Treadmill"),
     2,
@@ -289,14 +300,51 @@ VALUES
     (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
 );
 
+
+-- https://www.freecodecamp.org/news/sql-subquery-how-to-sub-query-in-select-statement/
+-- We after the order is processed, We can update the total number of items 
+
+UPDATE Orders
+SET numItems = (select sum(amount) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 3))
+WHERE orderID = ((SELECT orderID from Orders where userID = 3));
+
+UPDATE Orders
+SET numItems = (select sum(amount) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 1))
+WHERE orderID = ((SELECT orderID from Orders where userID = 1));
+
+UPDATE Orders
+SET numItems = (select sum(amount) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 4))
+WHERE orderID = ((SELECT orderID from Orders where userID = 4));
+
+-- Update the total price purchased by each order
+UPDATE Orders
+SET totalCost = (select sum(cost) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 3))
+WHERE orderID = ((SELECT orderID from Orders where userID = 3));
+
+UPDATE Orders
+SET totalCost = (select sum(cost) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 1))
+WHERE orderID = ((SELECT orderID from Orders where userID = 1));
+
+UPDATE Orders
+SET totalCost = (select sum(cost) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where userID = 4))
+WHERE orderID = ((SELECT orderID from Orders where userID = 4));
+
+
+
+
 -- Data Results
 -- select * from Users;
 select * from Orders;
 select * from Equipment;
--- select * from Reviews;
--- select * from ProductType;
+select * from Reviews;
+select * from ProductType;
 select * from OrderEquipment;
-
 
 
 SET FOREIGN_KEY_CHECKS = 1;
