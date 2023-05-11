@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Strength Solutions Supply</title>
+
+        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <script src="index.js" charset="utf-8" defer></script>
+    </head>
+    
+    <body>
+        <header>
+        <script src="index.js" charset="utf-8" defer></script>
+            <h1 class="website-title">Strength Solutions Supply</h1>
+        </header>
+
+        <div class="navbar">
+            <a href="#">Home</a>
+            <div class="equipment-dropdown">
+                <button class="dropbtn">Equipment
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="equip-dropdown-content">
+                    <a href="#">Chest Equipment</a>
+                    <a href="#">Back Equipment</a>
+                    <a href="#">Legs Equipment</a>
+                    <a href="#">Cardio</a>
+                    <a href="#">FreeWeights</a>
+                </div>
+            </div>
+            <a href="#">Cart</a>                
+        </div>
+
+
+
+        <main class="content">
+            <aside class="filter-equipment">
+                <h2>Customer</h2>
+
+                <table border="5" cellpadding="10">
+                    <tr>
+                        <th>UserID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>Jon</th>
+                        <th>Doe</th>
+                        <th>12345 Freeway St.</th>
+                        <th>123-423-2345</th>
+                        <th>jonDo@bye.com</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>Steve</th>
+                        <th>Parks</th>
+                        <th>42335 Some Ave.</th>
+                        <th>753-833-2355</th>
+                        <th>steveParks@outlook.com</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>Jeff</th>
+                        <th>Bezzels</th>
+                        <th>235 Poly Circle</th>
+                        <th>962-434-57243</th>
+                        <th>jeffBez@amzing.com</th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>Alvin</th>
+                        <th>Loops</th>
+                        <th>3842 Byte Blvd.</th>
+                        <th>864-246-5723</th>
+                        <th>alvLoops@code.com</th>
+                    </tr>
+                  </table>
+
+                <h2>Order</h2>
+
+                <table border="5" cellpadding="10">
+                    <tr>
+                        <th>OrderID</th>
+                        <th>UserID</th>
+                        <th>orderDate</th>
+                        <th>numItems</th>
+                        <th>totalCost</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2022-05-23</th>
+                        <th>5</th>
+                        <th>850.00</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>1</th>
+                        <th>2012-10-04</th>
+                        <th>7</th>
+                        <th>2500.00</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>22021-08-13</th>
+                        <th>15</th>
+                        <th>6523.00</th>
+                    </tr>
+                </table>
+
+                <h2>Equipment</h2>
+
+                <table border="5" cellpadding="10">
+                    <tr>
+                        <th>OrderID</th>
+                        <th>UserID</th>
+                        <th>orderDate</th>
+                        <th>numItems</th>
+                        <th>totalCost</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2022-05-23</th>
+                        <th>5</th>
+                        <th>850.00</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>1</th>
+                        <th>2012-10-04</th>
+                        <th>7</th>
+                        <th>2500.00</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>22021-08-13</th>
+                        <th>15</th>
+                        <th>6523.00</th>
+                    </tr>
+                </table>
+
+            
+
+
+                </div>
+            </aside>
+        </main>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        </div> <!-- browse -->
+        <div id="insert" style="display: block">
+            <form id="addPlanet">
+                <legend><strong>Add Customer</strong></legend>
+                    <fieldset class="fields">
+                    <label> First Name </label> <input type="text" name="firstName">
+                    <label> Last Name </label> <input type="text" name="lastName">
+                    <label> Address </label> <input type="text" name="Address">
+                    <label> Phone Number </label> <input type="text" name="phoneNumber">
+                    <label> Email </label> <input type="text" name="email">
+                    </fieldset>
+                <input class="btn" type="submit" id="addPlanet" value="Add New Customer">
+                <input class="btn" type="button" value="Cancel">
+            </form>
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div id="update" style="display: block">
+            <form id="updatePlanet">
+                <legend><strong>Update Customer</strong></legend>
+                    <fieldset class="fields">
+                    <label> First Name </label> <input type="text" name="firstName" value="">
+                    <label> Last Name </label> <input type="text" name="lastName" value="">
+                    <label> Address </label> <input type="text" name="Address" value="">
+                    <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
+                    <label> Email </label> <input type="text" name="email" value="">
+              </fieldset>
+              <input class="btn" type="submit" id="UpdateSavePlanet" value="Update Customer">
+                    <input class="btn" type="button" value="Cancel" >
+            </form> 
+          </div><!-- update -->
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+          <div id="delete" style="display: block">
+            <form id="Delete Customer">
+                <legend><strong>Delete Planet</strong></legend>
+                    <fieldset class="fields">
+                    <p>Are you sure you wish to delete the following?</p>
+                    <label>ID:</label> 1
+                      <label> Name </label> Gemenon
+                      
+              </fieldset>
+              <input class="btn" type="submit" id="DeletePlanet" value="Delete Planet">
+                    <input class="btn" type="button" value="cancel" >
+            </form> 
+          </div><!-- delete -->
+    </body>
+</html>
+
+
+
