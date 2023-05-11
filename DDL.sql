@@ -15,7 +15,6 @@ DROP TABLE IF EXISTS ProductType;
 DROP TABLE IF EXISTS Reviews;
 
 
-
 CREATE TABLE Users (
     userID int AUTO_INCREMENT NOT NULL UNIQUE,
     firstName varchar(50) NOT NULL,
@@ -23,8 +22,6 @@ CREATE TABLE Users (
     address varchar(50) NOT NULL,
     phoneNumber varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
-
-
 
     PRIMARY KEY (userID)
 );
@@ -38,8 +35,6 @@ CREATE TABLE Orders(
     numItems int NOT NULL,
     totalCost decimal(19,2) NOT NULL,
 
-    -- userid foreign key
-    
     PRIMARY KEY (orderID),
     FOREIGN KEY (userID) REFERENCES Users(userID)
         ON DELETE CASCADE
@@ -76,13 +71,9 @@ CREATE TABLE Equipment(
     equipmentStock int NOT NULL,
     productTypeID int NOT NULL,
 
-
-
     PRIMARY KEY (equipmentID),
     FOREIGN KEY (productTypeID) REFERENCES ProductType(productTypeID)
 );
-
-
 
 CREATE TABLE ProductType(
     productTypeID int NOT NULL,
@@ -108,7 +99,7 @@ CREATE TABLE Reviews(
 
 );
 
--- -- Example Data
+-- Example Data
 
 INSERT INTO Users (
     firstName,
@@ -136,7 +127,7 @@ VALUES
     "Jeff",
     "Bezzels",
     "235 Poly Circle",
-    "962-434-57243",
+    "962-434-5724",
     "jeffBez@amazing.com"
 ),
 (
@@ -151,30 +142,33 @@ VALUES
 
 INSERT INTO Orders (
     userID,
-    orderDate
-    -- numItems,
-    -- totalCost
+    orderDate,
+    numItems,
+    totalCost
 )
 VALUES
 (
     -- Utilzing SUM to calculate the total costs
     -- https://www.w3schools.com/sql/sql_count_avg_sum.asp
     (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
-    '2022-05-23'
-    -- 8,
-    -- "850"
+    '2022-05-23',
+    0,
+    0
+
 ),
 (
     (SELECT userID from Users where firstName = 'Jon' and lastName = 'Doe'),
-    '2012-10-04'
-    -- 7,
-    -- "2500"
+    '2012-10-04',
+    0,
+    0
+
 ),
 (
     (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
-    '2021-08-13'
-    -- "15",
-    -- "6523"
+    '2021-08-13',
+    0,
+    0
+
 );
 
 
@@ -275,26 +269,26 @@ INSERT INTO OrderEquipment(
 )
 VALUES
 (
-    (SELECT orderID from Orders where userID = 3),
+    (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23')),
     (SELECT equipmentID from Equipment where equipmentName = "Squat Rack"),
     5,
     (SELECT equipmentCost from Equipment where equipmentName = "Squat Rack") * amount
 ),
 (
-    (SELECT orderID from Orders where userID = 3),
+    (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23')),
     (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
     1,
     (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
 
 ),
 (
-    (SELECT orderID from Orders where userID = 4),
+    (SELECT orderID from Orders where (userID = 4 AND orderDate = '2021-08-13')),
     (SELECT equipmentID from Equipment where equipmentName = "Treadmill"),
     2,
     (SELECT equipmentCost from Equipment where equipmentName = "Treadmill") * amount
 ),
 (
-    (SELECT orderID from Orders where userID = 1),
+    (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04')),
     (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
     3,
     (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
@@ -307,44 +301,33 @@ VALUES
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 3))
-WHERE orderID = ((SELECT orderID from Orders where userID = 3));
+WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23'));
 
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 1))
-WHERE orderID = ((SELECT orderID from Orders where userID = 1));
+WHERE orderID = (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04'));
 
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 4))
-WHERE orderID = ((SELECT orderID from Orders where userID = 4));
+WHERE orderID = (SELECT orderID from Orders where (userID = 4 AND orderDate = '2021-08-13') );
 
 -- Update the total price purchased by each order
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 3))
-WHERE orderID = ((SELECT orderID from Orders where userID = 3));
+WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23'));
 
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 1))
-WHERE orderID = ((SELECT orderID from Orders where userID = 1));
+WHERE orderID = (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04'));
 
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where userID = 4))
 WHERE orderID = ((SELECT orderID from Orders where userID = 4));
-
-
-
-
--- Data Results
--- select * from Users;
-select * from Orders;
-select * from Equipment;
-select * from Reviews;
-select * from ProductType;
-select * from OrderEquipment;
 
 
 SET FOREIGN_KEY_CHECKS = 1;
