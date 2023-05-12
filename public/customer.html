@@ -38,6 +38,10 @@
             <aside class="filter-equipment">
                 <h2>Customer</h2>
 
+                [ <a href="customer.html">Customer</a> | <a href="order.html">Order</a> | <a href="productType.html">Product Type</a> | <a href="equipment.html">Equipment</a> | <a href="orderEquipment.html">Equipment Order</a> | <a href="review.html">Reviews</a> ]
+
+                <p>&nbsp;</p>
+
                 <table border="5" cellpadding="10">
                     <tr>
                         <th>UserID</th>
@@ -80,77 +84,6 @@
                         <th>alvLoops@code.com</th>
                     </tr>
                   </table>
-
-                <h2>Order</h2>
-
-                <table border="5" cellpadding="10">
-                    <tr>
-                        <th>OrderID</th>
-                        <th>UserID</th>
-                        <th>orderDate</th>
-                        <th>numItems</th>
-                        <th>totalCost</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>3</th>
-                        <th>2022-05-23</th>
-                        <th>5</th>
-                        <th>850.00</th>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <th>1</th>
-                        <th>2012-10-04</th>
-                        <th>7</th>
-                        <th>2500.00</th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>22021-08-13</th>
-                        <th>15</th>
-                        <th>6523.00</th>
-                    </tr>
-                </table>
-
-                <h2>Equipment</h2>
-
-                <table border="5" cellpadding="10">
-                    <tr>
-                        <th>OrderID</th>
-                        <th>UserID</th>
-                        <th>orderDate</th>
-                        <th>numItems</th>
-                        <th>totalCost</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>3</th>
-                        <th>2022-05-23</th>
-                        <th>5</th>
-                        <th>850.00</th>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <th>1</th>
-                        <th>2012-10-04</th>
-                        <th>7</th>
-                        <th>2500.00</th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>22021-08-13</th>
-                        <th>15</th>
-                        <th>6523.00</th>
-                    </tr>
-                </table>
-
-            
-
-
-                </div>
             </aside>
         </main>
 
@@ -161,11 +94,11 @@
             <form id="addPlanet">
                 <legend><strong>Add Customer</strong></legend>
                     <fieldset class="fields">
-                    <label> First Name </label> <input type="text" name="firstName">
-                    <label> Last Name </label> <input type="text" name="lastName">
-                    <label> Address </label> <input type="text" name="Address">
-                    <label> Phone Number </label> <input type="text" name="phoneNumber">
-                    <label> Email </label> <input type="text" name="email">
+                        <label> First Name </label> <input type="text" name="firstName">
+                        <label> Last Name </label> <input type="text" name="lastName">
+                        <label> Address </label> <input type="text" name="Address">
+                        <label> Phone Number </label> <input type="text" name="phoneNumber">
+                        <label> Email </label> <input type="text" name="email">
                     </fieldset>
                 <input class="btn" type="submit" id="addPlanet" value="Add New Customer">
                 <input class="btn" type="button" value="Cancel">
@@ -178,11 +111,11 @@
             <form id="updatePlanet">
                 <legend><strong>Update Customer</strong></legend>
                     <fieldset class="fields">
-                    <label> First Name </label> <input type="text" name="firstName" value="">
-                    <label> Last Name </label> <input type="text" name="lastName" value="">
-                    <label> Address </label> <input type="text" name="Address" value="">
-                    <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
-                    <label> Email </label> <input type="text" name="email" value="">
+                        <label> First Name </label> <input type="text" name="firstName" value="">
+                        <label> Last Name </label> <input type="text" name="lastName" value="">
+                        <label> Address </label> <input type="text" name="Address" value="">
+                        <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
+                        <label> Email </label> <input type="text" name="email" value="">
               </fieldset>
               <input class="btn" type="submit" id="UpdateSavePlanet" value="Update Customer">
                     <input class="btn" type="button" value="Cancel" >
@@ -193,15 +126,17 @@
 
           <div id="delete" style="display: block">
             <form id="Delete Customer">
-                <legend><strong>Delete Planet</strong></legend>
+                <legend><strong>Delete Customer</strong></legend>
                     <fieldset class="fields">
-                    <p>Are you sure you wish to delete the following?</p>
-                    <label>ID:</label> 1
-                      <label> Name </label> Gemenon
-                      
-              </fieldset>
-              <input class="btn" type="submit" id="DeletePlanet" value="Delete Planet">
-                    <input class="btn" type="button" value="cancel" >
+                        <label> UserID </label> <input type="text" name="userID" value="">
+                        <label> First Name </label> <input type="text" name="firstName" value="">
+                        <label> Last Name </label> <input type="text" name="lastName" value="">
+                        <label> Address </label> <input type="text" name="Address" value="">
+                        <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
+                        <label> Email </label> <input type="text" name="email" value="">
+                    </fieldset>
+                <input class="btn" type="submit" id="DeletePlanet" value="Delete Planet">
+                <input class="btn" type="button" value="cancel" >
             </form> 
           </div><!-- delete -->
     </body>
