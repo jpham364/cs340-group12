@@ -100,7 +100,7 @@
                         <label> Phone Number </label> <input type="text" name="phoneNumber">
                         <label> Email </label> <input type="text" name="email">
                     </fieldset>
-                <input class="btn" type="submit" id="addPlanet" value="Add New Customer">
+                <input class="btn" type="submit" id="addPlanet" value="Add New User">
                 <input class="btn" type="button" value="Cancel">
             </form>
         </div>
@@ -111,13 +111,19 @@
             <form id="updatePlanet">
                 <legend><strong>Update Customer</strong></legend>
                     <fieldset class="fields">
-                        <label> First Name </label> <input type="text" name="firstName" value="">
+                        <label>User: </label><select name="language" id="language">
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                          <option value="four">4</option>
+                        </select>
+
                         <label> Last Name </label> <input type="text" name="lastName" value="">
                         <label> Address </label> <input type="text" name="Address" value="">
                         <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
                         <label> Email </label> <input type="text" name="email" value="">
               </fieldset>
-              <input class="btn" type="submit" id="UpdateSavePlanet" value="Update Customer">
+              <input class="btn" type="submit" id="UpdateSavePlanet" value="Update User">
                     <input class="btn" type="button" value="Cancel" >
             </form> 
           </div><!-- update -->
@@ -128,17 +134,20 @@
             <form id="Delete Customer">
                 <legend><strong>Delete Customer</strong></legend>
                     <fieldset class="fields">
-                        <label> UserID </label> <input type="text" name="userID" value="">
-                        <label> First Name </label> <input type="text" name="firstName" value="">
-                        <label> Last Name </label> <input type="text" name="lastName" value="">
-                        <label> Address </label> <input type="text" name="Address" value="">
-                        <label> Phone Number </label> <input type="text" name="phoneNumber" value="">
-                        <label> Email </label> <input type="text" name="email" value="">
+                        <label>User: </label><select name="language" id="language">
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                          <option value="four">4</option>
+                        </select>
                     </fieldset>
-                <input class="btn" type="submit" id="DeletePlanet" value="Delete Customer">
+                <input class="btn" type="submit" id="DeletePlanet" value="Delete User">
                 <input class="btn" type="button" value="cancel" >
             </form> 
           </div><!-- delete -->
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
     </body>
 </html>
 
