@@ -27,23 +27,23 @@ CREATE TABLE Users (
 );
 
 
+-- We need to create a nullable relationship
 CREATE TABLE Orders(
    
     orderID int AUTO_INCREMENT NOT NULL UNIQUE,
-    userID int, 
+    userID int NULL, 
     orderDate date NOT NULL,
     numItems int NOT NULL,
     totalCost decimal(19,2) NOT NULL,
 
     PRIMARY KEY (orderID),
     FOREIGN KEY (userID) REFERENCES Users(userID)
-        ON DELETE CASCADE
+        ON DELETE SET NULL
 
 );
 
-
-
-
+-- Set NULL for Equipment, this allows for Equipment to be dissasociated from 
+-- an order
 CREATE TABLE OrderEquipment(
 
     orderID int,
@@ -54,11 +54,9 @@ CREATE TABLE OrderEquipment(
 
     
     FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
-        ON DELETE CASCADE,
+        ON DELETE SET NULL,
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
         ON DELETE CASCADE
-
-
 
 );
 
@@ -166,6 +164,14 @@ VALUES
 (
     (SELECT userID from Users where firstName = 'Alvin' and lastName = 'Loops'),
     '2021-08-13',
+    0,
+    0
+
+),
+(
+
+    (SELECT userID from Users where firstName = 'Jeff' and lastName = 'Bezzels'),
+    '2021-04-23',
     0,
     0
 
@@ -292,7 +298,14 @@ VALUES
     (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
     3,
     (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
-);
+),
+(
+    (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23')),
+    (SELECT equipmentID from Equipment where equipmentName = "Yoga Mat"),
+    2,
+    (SELECT equipmentCost from Equipment where equipmentName = "Yoga Mat") * amount
+)
+;
 
 
 -- https://www.freecodecamp.org/news/sql-subquery-how-to-sub-query-in-select-statement/
@@ -300,34 +313,44 @@ VALUES
 
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 3))
+                IN (SELECT orderID from Orders where userID = 3 AND orderDate = '2022-05-23'))
 WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23'));
 
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 1))
+                IN (SELECT orderID from Orders where userID = 1 AND orderDate = '2012-10-04'))
 WHERE orderID = (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04'));
 
 UPDATE Orders
 SET numItems = (select sum(amount) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 4))
+                IN (SELECT orderID from Orders where userID = 4 AND orderDate = '2021-08-13'))
 WHERE orderID = (SELECT orderID from Orders where (userID = 4 AND orderDate = '2021-08-13') );
+
+UPDATE Orders
+SET numItems = (select sum(amount) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23')))
+WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23') );
 
 -- Update the total price purchased by each order
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 3))
+                IN (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23')))
 WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2022-05-23'));
 
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 1))
+                IN (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04')))
 WHERE orderID = (SELECT orderID from Orders where (userID = 1 AND orderDate = '2012-10-04'));
 
 UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
-                IN (SELECT orderID from Orders where userID = 4))
-WHERE orderID = ((SELECT orderID from Orders where userID = 4));
+                IN (SELECT orderID from Orders where (userID = 4 AND orderDate = '2021-08-13')))
+WHERE orderID = (SELECT orderID from Orders where (userID = 4 AND orderDate = '2021-08-13'));
+
+UPDATE Orders
+SET totalCost = (select sum(cost) from OrderEquipment where orderID 
+                IN (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23')))
+WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23') );
 
 
 SET FOREIGN_KEY_CHECKS = 1;

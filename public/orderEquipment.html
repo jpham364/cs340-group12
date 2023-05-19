@@ -16,21 +16,21 @@
         </header>
 
         <div class="navbar">
-            <a href="#">Home</a>
-            <a href="customer.html">Users</a>
+            <a href="index.html">Home</a>
+            <a href="user.html">Users</a>
             <a href="order.html">Order</a>
             <a href="productType.html">Product Type</a>
             <a href="equipment.html">Equipment</a>
-            <a href="orderEquipment.html">Equipment Order</a>
+            <a href="orderEquipment.html">OrderEquipment</a>
             <a href="review.html">Reviews</a>
-            <a href="#">Cart</a>                
+                           
         </div>
 
 
 
         <main class="content">
             <aside class="filter-equipment">
-                <h2>Equipment Order</h2>
+                <h2>OrderEquipment</h2>
 
 
                 <table border="5" cellpadding="10">
@@ -64,6 +64,12 @@
                         <th>3</th>
                         <th>60.00</th>
                     </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>40.00</th>
+                    </tr>
                 </table>
             
             </aside>
@@ -74,19 +80,26 @@
 
         <div id="insert" style="display: block">
             <form id="addPlanet">
-                <legend><strong>Add Equipment Order</strong></legend>
+                <legend><strong>Add OrderEquipment</strong></legend>
                     <fieldset class="fields">
-                         <label>Equipment ID: </label><select name="language" id="language">
+                        <label>Order ID: </label>
+                            <select name="language" id="language">
+                                <option value="one">1</option>
+                                <option value="two">2</option>
+                                <option value="three">3</option>
+                                <option value="four">4</option>
+                            </select>
+                          <label>Equipment ID: </label><select name="language" id="language">
                           <option value="one">1</option>
                           <option value="two">2</option>
                           <option value="three">3</option>
                         </select>
 
-                        <label> Amount </label> <input type="text" name="Amount">
-                        <label> Cost </label> <input type="text" name="Cost">
+                        <label> Equipment Amount: </label> <input type="text" name="Amount">
+                       
                     </fieldset>
                     
-                <input class="btn" type="submit" id="addPlanet" value="Add Equipment Order">
+                <input class="btn" type="submit" id="addPlanet" value="Add OrderEquipment">
                 <input class="btn" type="button" value="Cancel">
             </form>
         </div>
@@ -94,23 +107,59 @@
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
         <div id="delete" style="display: block">
-            <form id="Delete Customer">
-                <legend><strong>Delete Equipemnt Order</strong></legend>
+            <form id="Edit entire orderEquipment">
+                <legend><strong>Delete orderEquipment</strong></legend>
                     <fieldset class="fields">
-                        <label>Equipment ID: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                        </select>
+                        
 
                         <label>Order ID: </label><select name="language" id="language">
                           <option value="one">1</option>
                           <option value="two">2</option>
                           <option value="three">3</option>
                         </select>
+
+                        <label>Equipment ID: </label><select name="language" id="language">
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                        </select>
                     </fieldset>
                 <input class="btn" type="submit" id="DeletePlanet" value="Delete OrderEquipment">
-                <input class="btn" type="button" value="cancel" >
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+          </div><!-- delete -->
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+          <div id="delete" style="display: block">
+            <form id="Update EquipmentID">
+                <legend><strong>Update EquipmentID</strong></legend>
+                    <fieldset class="fields">
+
+                        <label>Select Order ID: </label><select name="language" id="language">
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                          <option value="four">4</option>
+                        </select>
+
+                        <label>Select Equipment ID: </label><select name="language" id="language">
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                        </select>
+
+
+                        <label>Reassign Equipment ID: </label><select name="language" id="language">
+                          <option value="NULL">NULL</option>
+                          <option value="one">1</option>
+                          <option value="two">2</option>
+                          <option value="three">3</option>
+                        </select>
+                        
+                    </fieldset>
+                <input class="btn" type="submit" id="DeletePlanet" value="Update OrderEquipment">
+                <input class="btn" type="button" value="Cancel" >
             </form> 
           </div><!-- delete -->
 
@@ -129,7 +178,7 @@
                         <label> Update Amount </label> <input type="text" name="amount" value="">
                     </fieldset>
                 <input class="btn" type="submit" id="DeletePlanet" value="Update OrderEquipment">
-                <input class="btn" type="button" value="cancel" >
+                <input class="btn" type="button" value="Cancel" >
             </form> 
           </div><!-- delete -->
 
