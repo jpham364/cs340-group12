@@ -22,6 +22,14 @@ SELECT userID, firstName, lastName, address, phoneNumber, email
 -- Select all orders from user
 SELECT firstName, lastName, Users.userID, OrderID from Users INNER JOIN Orders ON Users.userID = Orders.userID;
 
+-- Select all equipment under a certain type
+SELECT equipmentID, equipmentName, equipmentDescription, equipmentCost, equipmentStock 
+from Equipment
+where productTypeID IN (SELECT productTypeID from ProductType where typeDescription = :specifed_description))
+
+
+SELECT userID, firstName, lastName, address, phoneNumber, email from Users where firstName = :specified_name
+
 
 -- INSERT STATEMENTS --
 -- Insert new User
@@ -146,8 +154,20 @@ SET numItems = (select sum(amount) from OrderEquipment where orderID
                 IN (SELECT orderID from Orders where :user_ID_from_table))
 WHERE orderID = (SELECT orderID from Orders where (:user_ID AND :order_Date));
 
+-- Update Address
+UPDATE Users
+SET address = ((select firstName from Users where :user_ID_from_table))
+WHERE address = :new_address
 
+-- Update Address
+UPDATE Users
+SET phoneNumber = ((select firstName from Users where :user_ID_from_table))
+WHERE phoneNumber = :newPhoneNumber
 
+-- Update Equipment ID
+UPDATE OrderEquipment
+SET equipmentID = (select equipmentID from OrderEquipment where :order_id_from_table and :equipmentID_from_table)
+WHERE equipmentID = :specified_value
 
 
 
