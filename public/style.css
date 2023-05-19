@@ -78,6 +78,6 @@ header {
 
 /* Navbar Cart lefet side */
 
-.navbar a:nth-child(2) {
+.navbar a:nth-child(3) {
     float: right;
 }
