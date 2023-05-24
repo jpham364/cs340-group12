@@ -11,6 +11,7 @@ function validateAdduser() {
     }
 }
 
+// 
 function validateUpdateUser() {
     let updateInput = document.forms["updateUser"];
     if (updateInput['firstName'].value == "" || updateInput['lastName'].value == "" || updateInput['Address'].value == "" || updateInput['phoneNumber'].value == "" || updateInput['email'].value == "") {
