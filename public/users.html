@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Strength Solutions Supply</title>
+
+        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <script src="index.js" charset="utf-8" defer></script>
+    </head>
+    
+    <body>
+        <header>
+        <script src="index.js" charset="utf-8" defer></script>
+            <h1 class="website-title">Strength Solutions Supply</h1>
+        </header>
+
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="users.html">Users</a>
+            <a href="order.html">Order</a>
+            <a href="productType.html">Product Type</a>
+            <a href="equipment.html">Equipment</a>
+            <a href="orderEquipment.html">OrderEquipment</a>
+            <a href="review.html">Reviews</a>
+                           
+        </div>
+
+
+
+        <main class="content">
+            <aside class="filter-equipment">
+                <h2>Users</h2>
+
+                
+                <h3>Filter Name</h3>
+                <form id="searchForm">
+                    <label for="searchInput">Enter a name:</label>
+                    <input type="text" id="searchInput" name="searchInput" placeholder="Type a name...">
+                    <input type="submit" value="Search">
+                </form>
+
+                <div id="searchResults"></div>
+
+
+                <p>&nbsp;</p>
+
+                <div class="table-contents">
+                    <table border="5" cellpadding="10">
+                        <tr>
+                            <th>UserID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>Jon</th>
+                            <th>Doe</th>
+                            <th>12345 Freeway St.</th>
+                            <th>123-423-2345</th>
+                            <th>jonDo@bye.com</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>Steve</th>
+                            <th>Parks</th>
+                            <th>42335 Some Ave.</th>
+                            <th>753-833-2355</th>
+                            <th>steveParks@outlook.com</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>Jeff</th>
+                            <th>Bezzels</th>
+                            <th>235 Poly Circle</th>
+                            <th>962-434-57243</th>
+                            <th>jeffBez@amzing.com</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>Alvin</th>
+                            <th>Loops</th>
+                            <th>3842 Byte Blvd.</th>
+                            <th>864-246-5723</th>
+                            <th>alvLoops@code.com</th>
+                        </tr>
+                    </table>
+                </div>
+            </aside>
+        </main>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <!-- browse -->
+        <div class="add-user-content">
+            <div id="insert">
+                <form class="addUser">
+                    <legend><strong>Add User</strong></legend>
+
+                    <div class="add-user-container">
+                        <label for="filter-text" class="filter-input-label">First Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-user-container">
+                        <label for="filter-text" class="filter-input-label">Last Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-user-container">
+                        <label for="filter-text" class="filter-input-label">Address</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-user-container">
+                        <label for="filter-text" class="filter-input-label">Phone Number</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-user-container">
+                        <label for="filter-text" class="filter-input-label">Email</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                        <!-- <fieldset class="fields">
+                            <label> First Name </label> <input type="text" name="firstName">
+                            <label> Last Name </label> <input type="text" name="lastName">
+                            <label> Address </label> <input type="text" name="Address">
+                            <label> Phone Number </label> <input type="text" name="phoneNumber">
+                            <label> Email </label> <input type="text" name="email">
+                        </fieldset> -->
+                    <input class="btn" type="submit" id="addUserSave" value="Add New User">
+                    <input class="btn" type="button" value="Cancel">
+                </form>
+            </div>
+        </div>
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div class="update-user-content">
+            <div id="update" >
+                <form class="updateUser">
+                    <legend><strong>Update User</strong></legend>
+                        <!-- <fieldset class="fields"> -->
+
+                        <div class="update-user-container">
+                            <label for="filter-user" class="filter-input-label">User</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                        
+                        <div class="update-user-container">
+                            <label for="filter-text" class="filter-input-label">First Name</label>
+                            <div class="filter-input-element">
+                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            </div>
+                        </div>
+
+                        <div class="update-user-container">
+                            <label for="filter-text" class="filter-input-label">Last Name</label>
+                            <div class="filter-input-element">
+                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            </div>
+                        </div>
+
+                        <div class="update-user-container">
+                            <label for="filter-text" class="filter-input-label">Address</label>
+                            <div class="filter-input-element">
+                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            </div>
+                        </div>
+
+                        <div class="update-user-container">
+                            <label for="filter-text" class="filter-input-label">Phone Number</label>
+                            <div class="filter-input-element">
+                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            </div>
+                        </div>
+
+                        <div class="update-user-container">
+                            <label for="filter-text" class="filter-input-label">Email</label>
+                            <div class="filter-input-element">
+                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            </div>
+                        </div>
+                    <input class="btn" type="submit" id="UpdateUserSave" value="Update User">
+                    <input class="btn" type="button" value="Cancel" >
+                </form> 
+            </div><!-- update -->
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        
+        <div class="delete-user-content">
+            <div id="delete" style="display: block">
+                <form class="deleteUser">
+                    <legend><strong>Delete User</strong></legend>
+                        <div class="delete-user-container">
+                            <label for="filter-user" class="filter-input-label">User</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteUser" value="Delete User">
+                    <input class="btn" type="button" value="cancel" >
+                </form> 
+            </div><!-- delete -->
+        </div>
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+    </body>
+</html>
