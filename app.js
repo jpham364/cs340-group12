@@ -53,15 +53,40 @@ app.get('/', function(req, res){
 
 app.get('/users', function(req, res){
 
-    let viewQuery = "SELECT * FROM Users;";
+    // let query1 = "SELECT * FROM Users;";
+    let query1;
 
-    db.pool.query(viewQuery, function(error, rows, fields){
+    // If there is no query string, we perform simple SELECT
+    if(req.query.fname === undefined){
+        query1 = "SELECT * FROM Users";
+    }
+
+    else{
+        query1 = `SELECT * FROM Users WHERE firstName LIKE "${req.query.fname}%"`
+    }
+
+
+
+    // This is for the drop down menu, the same for both cases
+    let query2 = "SELECT userID FROM Users;";
+
+    db.pool.query(query1, function(error, rows, fields){
          
         // {data: rows}
         // This sends the renderer an object
         // where 'data' is equal to 'rows' we 
         // got from the query
-        res.render('partials/users', {data: rows});
+        let users = rows;
+
+        // res.render('partials/users',{data: users});
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save user IDs
+            let userIDs = rows;
+            return res.render('partials/users', {data: users, users: userIDs});
+        })
+
+
 
     })
 
