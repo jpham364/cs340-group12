@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: aquamarine;
+    background-color: #88CCC9;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -30,54 +30,217 @@ header {
     text-decoration: none;
 }
 
-.equipment-dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-.equipment-dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-.navbar a:hover, .equipment-dropdown:hover .dropbtn {
-    background-color: red;
-}
-
-.equip-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.equip-dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.equip-dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.equipment-dropdown:hover .equip-dropdown-content {
-    display: block;
-}
-
 /* Navbar Cart lefet side */
 
 .navbar a:nth-child(8) {
     float: right;
+}
+
+/* Table contents */
+
+.table-contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Adding User */
+
+.addUser {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+}
+
+.addUser legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-user-content {
+    display: flex;
+    margin: 0px;
+}
+
+.add-user-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* adding, delete, or update boxes */
+
+.filter-input-label {
+    width: 120px;   
+}
+
+.filter-input-element {
+    flex: 1;
+    display: flex;
+}
+
+.filter-input {
+    flex: 1;
+    font-size: 14px;
+    margin-left: 10px;
+    padding: 3px;
+    border: 1px solid #333131;
+    border-radius: 3px;
+}
+
+.filter-input-label {
+    width: 100;
+}
+
+.filter-input-element {
+    margin: 0 5px;
+    flex: 1 1 100%;
+}
+
+.filter-input {
+    font-size: 14px;
+    width: 100%;
+    margin-left: 10px;
+    padding: 3px;
+    border: 1px solid #333131;
+    border-radius: 3px;
+}
+
+/* .btn {
+    margin-top: 10px;
+}
+
+.addUser .btn:first-child {
+    margin-right: 10px; 
+} */
+
+/* Update User box */
+
+.updateUser {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.updateUser legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.update-user-content {
+    display: flex;
+    margin: 0px;
+}
+
+.update-user-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+/* Delete User box */
+
+.deleteUser {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteUser legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-user-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-user-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Add New Order */
+
+.addOrder {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.addOrder legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-order-content {
+    display: flex;
+    margin: 0px;
+}
+
+.add-order-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Delete Order box */
+
+.deleteOrder {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteOrder legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-order-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-order-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }

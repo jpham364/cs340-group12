@@ -35,46 +35,46 @@
 
                 <p>&nbsp;</p>
 
+                <div class="table-contents">
+                    <table border="5" cellpadding="10">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User Id</th>
+                            <th>Order Date</th>
+                            <th>Items Numbers</th>
+                            <th>Cost</th>
 
-                <table border="5" cellpadding="10">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>User Id</th>
-                        <th>Order Date</th>
-                        <th>Items Numbers</th>
-                        <th>Cost</th>
-
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>3</th>
-                        <th>2022-05-23</th>
-                        <th>6</th>
-                        <th>2270.00</th>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <th>1</th>
-                        <th>2012-10-04</th>
-                        <th>3</th>
-                        <th>60.00</th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>2021-08-13</th>
-                        <th>2</th>
-                        <th>660.00</th>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                        <th>3</th>
-                        <th>2021-04-23</th>
-                        <th>2</th>
-                        <th>40.00</th>
-                    </tr>
-                </table>
-            
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>3</th>
+                            <th>2022-05-23</th>
+                            <th>6</th>
+                            <th>2270.00</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>2012-10-04</th>
+                            <th>3</th>
+                            <th>60.00</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>2021-08-13</th>
+                            <th>2</th>
+                            <th>660.00</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2021-04-23</th>
+                            <th>2</th>
+                            <th>40.00</th>
+                        </tr>
+                    </table>
+                </div>
             </aside>
         </main>
 
@@ -82,49 +82,68 @@
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-        <div id="insert" style="display: block">
-            <form id="addPlanet">
-                <legend><strong>Add Order</strong></legend>
-                    <fieldset class="fields">
-                        <label>User ID: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                          <option value="four">4</option>
-                        </select> 
+        <div class="add-order-content">
+            <div id="insert" style="display: block">
+                <form class="addOrder">
+                    <legend><strong>Add Order</strong></legend>
 
-                        <label>Order ID: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                          <option value="four">4</option>
-                        </select> 
-                        <label> Order Date </label> <input type="text" name="Address">
-                    </fieldset>
-                <input class="btn" type="submit" id="addPlanet" value="Add New Order">
-                <input class="btn" type="button" value="Cancel">
-            </form>
+                    <div class="add-order-container">
+                        <label for="filter-user" class="filter-input-label">User ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="add-order-container">
+                        <label for="filter-user" class="filter-input-label">Order ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>  
+                    <input class="btn" type="submit" id="" value="Add New Order">
+                    <input class="btn" type="button" value="Cancel">
+                </form>
+            </div>
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-          <div id="delete" style="display: block">
-            <form id="Delete Order">
-                <legend><strong>Delete Order</strong></legend>
-                    <fieldset class="fields">
-                        <label>Order ID: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                          <option value="four">4</option>
-                        </select>
-                    </fieldset>
-                <input class="btn" type="submit" id="DeletePlanet" value="Delete Order">
-                <input class="btn" type="button" value="cancel" >
-            </form> 
-          </div><!-- delete -->
+        
+        <div class="delete-order-content">
+            <div id="delete" style="display: block">
+                <form class="deleteOrder">
+                    <legend><strong>Delete order</strong></legend>
+                        <div class="delete-order-container">
+                            <label for="filter-user" class="filter-input-label">Order ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteOrder" value="Delete Order">
+                    <input class="btn" type="button" value="cancel" >
+                </form> 
+            </div><!-- delete -->
+        </div>
 
           <p>&nbsp;</p> <!-- WHITE SPACE-->
           <p>&nbsp;</p> <!-- WHITE SPACE-->
