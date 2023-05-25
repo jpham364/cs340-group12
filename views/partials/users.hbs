@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Strength Solutions Supply</title>
-
-        <link rel="stylesheet" href="style.css">
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-        <script src="index.js" charset="utf-8" defer></script>
-    </head>
-    
-    <body>
-        <header>
-        <script src="index.js" charset="utf-8" defer></script>
-            <h1 class="website-title">Strength Solutions Supply</h1>
-        </header>
-
-        <div class="navbar">
-            <a href="/">Home</a>
-            <a href="users.html">Users</a>
-            <a href="order.html">Order</a>
-            <a href="productType.html">Product Type</a>
-            <a href="equipment.html">Equipment</a>
-            <a href="orderEquipment.html">OrderEquipment</a>
-            <a href="review.html">Reviews</a>
-                           
-        </div>
-
-
-
-        <main class="content">
+<main class="content">
             <aside class="filter-equipment">
                 <h2>Users</h2>
 
@@ -46,48 +16,44 @@
                 <p>&nbsp;</p>
 
                 <div class="table-contents">
+                    
                     <table border="5" cellpadding="10">
-                        <tr>
-                            <th>UserID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>Jon</th>
-                            <th>Doe</th>
-                            <th>12345 Freeway St.</th>
-                            <th>123-423-2345</th>
-                            <th>jonDo@bye.com</th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>Steve</th>
-                            <th>Parks</th>
-                            <th>42335 Some Ave.</th>
-                            <th>753-833-2355</th>
-                            <th>steveParks@outlook.com</th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th>Jeff</th>
-                            <th>Bezzels</th>
-                            <th>235 Poly Circle</th>
-                            <th>962-434-57243</th>
-                            <th>jeffBez@amzing.com</th>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <th>Alvin</th>
-                            <th>Loops</th>
-                            <th>3842 Byte Blvd.</th>
-                            <th>864-246-5723</th>
-                            <th>alvLoops@code.com</th>
-                        </tr>
+
+                        <!-- This is for the first row, print the keys -->
+                        <thead>
+
+                            
+                            <tr>
+                                {{#each data.[0]}}
+                                    <th>
+                                        {{@key}}
+                                    </th>
+                                {{/each}}
+                            </tr>
+                            
+
+                        </thead>
+
+                        <!-- Body section -->
+                        <tbody>
+
+                            {{#each data}}
+                            <tr>
+                                <td>{{this.userID}}</td>
+                                <td>{{this.firstName}}</td>
+                                <td>{{this.lastName}}</td>
+                                <td>{{this.address}}</td>
+                                <td>{{this.phoneNumber}}</td>
+                                <td>{{this.email}}</td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                        
                     </table>
+
+
+
                 </div>
             </aside>
         </main>
@@ -234,5 +200,3 @@
 
           <p>&nbsp;</p> <!-- WHITE SPACE-->
           <p>&nbsp;</p> <!-- WHITE SPACE-->
-    </body>
-</html>

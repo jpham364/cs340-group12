@@ -40,10 +40,31 @@ app.use(express.static('public'));
 */
 app.get('/', function(req, res){
 
-
-    res.render('index');
+    res.render('partials/index');
 
 });
+
+app.get('/users', function(req, res){
+
+
+    let viewQuery = "SELECT * FROM Users;";
+
+    db.pool.query(viewQuery, function(error, rows, fields){
+         
+        // {data: rows}
+        // This sends the renderer an object
+        // where 'data' is equal to 'rows' we 
+        // got from the query
+        res.render('partials/users', {data: rows});
+
+    })
+
+   
+
+
+});
+
+
 
 
 
