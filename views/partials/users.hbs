@@ -4,10 +4,13 @@
 
                 
                 <h3>Filter Name</h3>
-                <form id="searchForm">
-                    <label for="searchInput">Enter a name:</label>
-                    <input type="text" id="searchInput" name="searchInput" placeholder="Type a name...">
-                    <input type="submit" value="Search">
+                <form id="search-fname" method='GET' action='/users'>
+                    <label for="input-fName">Search by First name:</label>
+                    <input type="text" id="input-fname-search" name="fname" placeholder="Type first name...">
+                   
+
+                    <input type="submit" value = "Search First Name!">
+                    <a href='/users'><button>Cancel</button></a>
                 </form>
 
                 <div id="searchResults"></div>

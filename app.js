@@ -53,8 +53,21 @@ app.get('/', function(req, res){
 
 app.get('/users', function(req, res){
 
-    let query1 = "SELECT * FROM Users;";
+    // let query1 = "SELECT * FROM Users;";
+    let query1;
 
+    // If there is no query string, we perform simple SELECT
+    if(req.query.fname === undefined){
+        query1 = "SELECT * FROM Users";
+    }
+
+    else{
+        query1 = `SELECT * FROM Users WHERE firstName LIKE "${req.query.fname}%"`
+    }
+
+
+
+    // This is for the drop down menu, the same for both cases
     let query2 = "SELECT userID FROM Users;";
 
     db.pool.query(query1, function(error, rows, fields){
@@ -63,7 +76,6 @@ app.get('/users', function(req, res){
         // This sends the renderer an object
         // where 'data' is equal to 'rows' we 
         // got from the query
-        // res.render('partials/users', {data: rows});
         let users = rows;
 
         // res.render('partials/users',{data: users});
