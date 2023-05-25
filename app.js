@@ -35,6 +35,13 @@ app.set('view engine', '.hbs') // use HBS when it sees a .hbs file
 app.use(express.static('public'));
 
 
+// Step 5: Adding New Data SETUP
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
+
+
+
 /*
     ROUTES
 */
@@ -45,7 +52,6 @@ app.get('/', function(req, res){
 });
 
 app.get('/users', function(req, res){
-
 
     let viewQuery = "SELECT * FROM Users;";
 
@@ -59,10 +65,42 @@ app.get('/users', function(req, res){
 
     })
 
+});
+
+
+// Step 5 Adding New Data
+app.post('/add-user-form', function(req, res){
+
+
+    // Capture incoming data and parse into JS object
+    let data = req.body;
+
+    // Capture NULL values (if applicable)
+
+
+    // Create query and run it on database
+    insertUser = `INSERT INTO Users(firstName, lastName, address, phoneNumber, email) VALUES ('${data['input-fName']}', '${data['input-lName']}',  '${data['input-address']}', '${data['input-pNumber']}',  '${data['input-email']}' )`;
+    db.pool.query(insertUser, function(error, rows, fields){
+
+         // Check to see if there was an error
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            res.redirect('/users');
+
+        }
+
+
+    })
+
    
 
+})
 
-});
 
 
 

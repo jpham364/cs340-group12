@@ -17,7 +17,7 @@
 
                 <div class="table-contents">
                     
-                    <table border="5" cellpadding="10">
+                    <table border="5" cellpadding="10" id="users-table">
 
                         <!-- This is for the first row, print the keys -->
                         <thead>
@@ -31,7 +31,6 @@
                                 {{/each}}
                             </tr>
                             
-
                         </thead>
 
                         <!-- Body section -->
@@ -60,61 +59,63 @@
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-        <!-- browse -->
+        <!-- Add User -->
         <div class="add-user-content">
             <div id="insert">
-                <form class="addUser">
+
+
+                <form class="addUser" method="POST" action="/add-user-form">
                     <legend><strong>Add User</strong></legend>
 
                     <div class="add-user-container">
                         <label for="filter-text" class="filter-input-label">First Name</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-fName" id="input-fName" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-user-container">
                         <label for="filter-text" class="filter-input-label">Last Name</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-lName" id="input-lName" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-user-container">
                         <label for="filter-text" class="filter-input-label">Address</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-address" id="input-address" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-user-container">
                         <label for="filter-text" class="filter-input-label">Phone Number</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-pNumber" id="input-pNumber" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-user-container">
                         <label for="filter-text" class="filter-input-label">Email</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-email" id="input-email" class="filter-input">
                         </div>
                     </div>
 
-                        <!-- <fieldset class="fields">
-                            <label> First Name </label> <input type="text" name="firstName">
-                            <label> Last Name </label> <input type="text" name="lastName">
-                            <label> Address </label> <input type="text" name="Address">
-                            <label> Phone Number </label> <input type="text" name="phoneNumber">
-                            <label> Email </label> <input type="text" name="email">
-                        </fieldset> -->
                     <input class="btn" type="submit" id="addUserSave" value="Add New User">
                     <input class="btn" type="button" value="Cancel">
                 </form>
+
+
+
+
             </div>
         </div>
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
+
+
+        <!-- Update User -->
         <div class="update-user-content">
             <div id="update" >
                 <form class="updateUser">
@@ -171,11 +172,15 @@
                     <input class="btn" type="submit" id="UpdateUserSave" value="Update User">
                     <input class="btn" type="button" value="Cancel" >
                 </form> 
-            </div><!-- update -->
+            </div>
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
-        
+
+
+
+
+        <!-- Delete User -->
         <div class="delete-user-content">
             <div id="delete" style="display: block">
                 <form class="deleteUser">
@@ -198,5 +203,12 @@
             </div><!-- delete -->
         </div>
 
-          <p>&nbsp;</p> <!-- WHITE SPACE-->
-          <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+<!-- Embed javascript to handle DOM manipulation and AJAX request  -->
+<!-- <script src="./add_user.js" -->
+
+
+
+
