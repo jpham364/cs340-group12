@@ -189,11 +189,10 @@
                             <label for="filter-user" class="filter-input-label">User</label>
                             <div class="filter-input-element">
                                 <select id="filter-user" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                    <option selected value="">Choose a user ID</option>
+                                    {{#each users}}
+                                    <option value="{{this.userID}}">{{this.userID}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
                         </div>  
