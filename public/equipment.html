@@ -86,59 +86,118 @@
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-        <div id="insert" style="display: block">
-            <form id="addPlanet">
-                <legend><strong>Add Equipment</strong></legend>
-                    <fieldset class="fields">
-                        <label> Equipment Name </label> <input type="text" name="firstName">
-                        <label> Equipment Description </label> <input type="text" name="lastName">
-                        <label> Cost </label> <input type="text" name="Address">
-                        <label> Stock </label> <input type="text" name="phoneNumber">
-                    </fieldset>
-                <input class="btn" type="submit" id="addPlanet" value="Add Equipment">
-                <input class="btn" type="button" value="Cancel">
-            </form>
+        <!-- browse -->
+        <div class="add-equipment-content">
+            <div id="insert">
+                <form class="addEquipment">
+                    <legend><strong>Add Equipment</strong></legend>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Description</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Cost</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Stock</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+                    <input class="btn" type="submit" id="AddEquipment" value="Add New Equipment">
+                    <input class="btn" type="button" value="Cancel">
+                </form>
+            </div>
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-        <div id="update" style="display: block">
-            <form id="updatePlanet">
-                <legend><strong>Update Equipment</strong></legend>
-                    <fieldset class="fields">
-                        <label>Equipment: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                        </select>
 
-                        <label> Equipment Name </label> <input type="text" name="lastName" value="">
-                        <label> Description </label> <input type="text" name="Address" value="">
-                        <label> Cost </label> <input type="text" name="phoneNumber" value="">
-                        <label> Stock </label> <input type="text" name="email" value="">
-              </fieldset>
-              <input class="btn" type="submit" id="UpdateSavePlanet" value="Update Equipment">
-                    <input class="btn" type="button" value="Cancel" >
+        <div id="update" style="display: block">
+            <form class="updateEquipment">
+                <legend><strong>Update Equipment</strong></legend>
+                    <div class="update-equipment-container">
+                        <label for="filter-user" class="filter-input-label">Equipment</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Description</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Cost</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Stock</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="UpdateEquipment" value="Update Equipment">
+                <input class="btn" type="button" value="Cancel" >
             </form> 
         </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-         <div id="delete" style="display: block">
-            <form id="Delete Customer">
-                <legend><strong>Delete Equipment</strong></legend>
-                    <fieldset class="fields">
-                        <label>User: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                        
-                        </select>
-                    </fieldset>
-                <input class="btn" type="submit" id="DeletePlanet" value="Delete Equipment">
-                <input class="btn" type="button" value="cancel" >
-            </form> 
-          </div><!-- delete -->
+        <div class="delete-equipment-content">
+            <div id="delete" style="display: block">
+                <form class="deleteEquipment">
+                    <legend><strong>Delete Equipment</strong></legend>
+                        <div class="delete-equipment-container">
+                            <label for="filter-user" class="filter-input-label">User ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteEquipment" value="Delete Equipment">
+                    <input class="btn" type="button" value="Cancel" >
+                </form>  
+            </div><!-- delete -->
+        </div>
 
           <p>&nbsp;</p> <!-- WHITE SPACE-->
           <p>&nbsp;</p> <!-- WHITE SPACE-->

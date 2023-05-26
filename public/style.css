@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #88CCC9;
+    background-color: #65748a;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -240,6 +240,353 @@ header {
 }
 
 .delete-order-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Add New Product Type */
+
+.productType {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.productType legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.product-type-content {
+    display: flex;
+    margin: 0px;
+}
+
+.product-type-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Delete User box */
+
+.deleteProductType {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteProductType legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-product-type-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-product-type-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Add equipment */
+
+.addEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.addEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-equipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.add-equipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Delete equipment box */
+
+.deleteEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-equipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-equipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Update User box */
+
+.updateEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.updateEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.update-equipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.update-equipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+
+
+/* Add orderEquipment */
+
+.addOrderEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.addOrderEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-OrderEquipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.add-OrderEquipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Delete equipment box */
+
+.deleteOrderEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteOrderEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-OrderEquipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-OrderEquipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Update User box */
+
+.updateOrderEquipment {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.updateOrderEquipment legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.update-OrderEquipment-content {
+    display: flex;
+    margin: 0px;
+}
+
+.update-OrderEquipment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Update User box */
+
+.updateAmount {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.updateAmount legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.update-amount-content {
+    display: flex;
+    margin: 0px;
+}
+
+.update-amount-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Add Review */
+
+.addReview {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.addReview legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-review-content {
+    display: flex;
+    margin: 0px;
+}
+
+.add-review-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Delete Review box */
+
+.deleteReview {
+    display: inline-block;
+    min-width: 200px;
+    margin: 20px 20px auto 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
+    border: 1px solid #333131;
+
+}
+
+.deleteReview legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.delete-review-content {
+    display: flex;
+    margin: 0px;
+}
+
+.delete-review-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px;

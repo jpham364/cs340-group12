@@ -70,45 +70,57 @@
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-         <div id="delete" style="display: block">
-            <form id="Add review">
-                <legend><strong>Add Review</strong></legend>
-                    <fieldset class="fields">
-                        <label>User: </label><select name="language" id="language">
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                        </select>
+        <div id="update" style="display: block">
+            <form class="addReview">
+                <legend><strong>Update Review</strong></legend>
+                    <div class="add-review-container">
+                        <label for="filter-user" class="filter-input-label">User</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>  
 
-                        <label> Review </label> <input type="text" name="review" value="">
-
-
-                    </fieldset>
-                <input class="btn" type="submit" id="DeletePlanet" value="Add Review">
-                <input class="btn" type="button" value="cancel">
+                    <div class="add-review-container">
+                        <label for="filter-text" class="filter-input-label">Review</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="UpdateReview" value="Update Review">
+                <input class="btn" type="button" value="Cancel" >
             </form> 
-        </div><!-- delete -->
-
-
+        </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-         <div id="delete" style="display: block">
-            <form id="Delete Customer">
-                <legend><strong>Delete Review</strong></legend>
-                    <fieldset class="fields">
-                        <label>User ID: </label><select name="language" id="language">
-                          <option value="one">1</option>
-                          <option value="two">2</option>
-                          <option value="three">3</option>
-                          <option value="four">4</option>
-                        </select>
-                    </fieldset>
-                <input class="btn" type="submit" id="DeletePlanet" value="Delete Review">
-                <input class="btn" type="button" value="cancel" >
-            </form> 
-        </div><!-- delete -->
+        <div class="delete-review-content">
+            <div id="delete" style="display: block">
+                <form class="deleteReview">
+                    <legend><strong>Delete Product Type</strong></legend>
+                        <div class="delete-review-container">
+                            <label for="filter-user" class="filter-input-label">User ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteReview" value="Delete Review">
+                    <input class="btn" type="button" value="Cancel" >
+                </form>  
+            </div><!-- delete -->
+        </div>
 
 
 
