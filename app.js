@@ -11,9 +11,18 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
+// Step 5: Adding New Data SETUP
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+
+
+
 PORT        = 5647;                 // Set a port number at the top so it's easy to change in the future
 
 
+// static files
+app.use(express.static('public'))
 
 
 
@@ -35,10 +44,6 @@ app.set('view engine', '.hbs') // use HBS when it sees a .hbs file
 app.use(express.static('public'));
 
 
-// Step 5: Adding New Data SETUP
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use(express.static('public'))
 
 
 
@@ -94,7 +99,7 @@ app.get('/users', function(req, res){
 
 
 // Step 5 Adding New Data
-app.post('/add-user-form', function(req, res){
+app.post('/add-user-ajax', function(req, res){
 
 
     // Capture incoming data and parse into JS object
@@ -104,8 +109,9 @@ app.post('/add-user-form', function(req, res){
 
 
     // Create query and run it on database
-    insertUser = `INSERT INTO Users(firstName, lastName, address, phoneNumber, email) VALUES ('${data['input-fName']}', '${data['input-lName']}',  '${data['input-address']}', '${data['input-pNumber']}',  '${data['input-email']}' )`;
-    db.pool.query(insertUser, function(error, rows, fields){
+    let query1 = `INSERT INTO Users(firstName, lastName, address, phoneNumber, email) 
+                   VALUES ("${data['fName']}", "${data['lName']}", "${data['address']}", "${data['pNumber']}", "${data['email']}")`;
+    db.pool.query(query1, function(error, rows, fields){
 
          // Check to see if there was an error
         if (error){
@@ -115,16 +121,31 @@ app.post('/add-user-form', function(req, res){
 
         else{
 
-            res.redirect('/users');
+            query2 = `SELECT * FROM Users;`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+                    res.send(rows);
+                }
+
+
+
+            })
 
         }
 
 
-    })
+    });
 
    
 
-})
+});
 
 
 
