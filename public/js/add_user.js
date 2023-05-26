@@ -111,6 +111,13 @@ addRowToTable = (data) => {
 	// Add new row to table
 	currTable.appendChild(row);
 
+	// updating menu
+	let selectMenu = document.getElementById("IDSelect");
+	let option = document.createElement("option");
+	option.value = newRow.userID;
+	selectMenu.add(option);
+
+
 }
 
 

@@ -122,64 +122,61 @@
         <!-- Update User -->
         <div class="update-user-content">
             <div id="update" >
-                <form class="updateUser">
+                <form class="updateUser" id="update-user-form-ajax">
                     <legend><strong>Update User</strong></legend>
-                        <!-- <fieldset class="fields"> -->
+                       
 
                         <div class="update-user-container">
                             <label for="filter-user" class="filter-input-label">User</label>
                             <div class="filter-input-element">
-                                <select id="filter-user" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <select id="IDSelect" class="filter-input" name="filter-user">
+                                    <option selected value="">Choose a user ID</option>
+                                    {{#each users}}
+                                    <option name = "delete-user-drop" value="{{this.userID}}">{{this.userID}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
                         </div>  
-                        
-                        <div class="update-user-container">
-                            <label for="filter-text" class="filter-input-label">First Name</label>
-                            <div class="filter-input-element">
-                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                            </div>
-                        </div>
-
-                        <div class="update-user-container">
-                            <label for="filter-text" class="filter-input-label">Last Name</label>
-                            <div class="filter-input-element">
-                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                            </div>
-                        </div>
-
-                        <div class="update-user-container">
-                            <label for="filter-text" class="filter-input-label">Address</label>
-                            <div class="filter-input-element">
-                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                            </div>
-                        </div>
-
-                        <div class="update-user-container">
-                            <label for="filter-text" class="filter-input-label">Phone Number</label>
-                            <div class="filter-input-element">
-                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                            </div>
-                        </div>
 
                         <div class="update-user-container">
                             <label for="filter-text" class="filter-input-label">Email</label>
                             <div class="filter-input-element">
-                                <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                                <input type="text" name="update-email" id="update-email" class="filter-input">
                             </div>
                         </div>
                     <input class="btn" type="submit" id="UpdateUserSave" value="Update User">
                     <input class="btn" type="button" value="Cancel" >
                 </form> 
+
+                <script src="./js/update_user.js"></script>
             </div>
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <!-- Delete User -->
+        <div class="delete-user-content">
+            <div id="delete" style="display: block">
+                <form class="deleteUser" method="POST" action="/delete-user-form">
+                    <legend><strong>Delete User</strong></legend>
+                        <div class="delete-user-container">
+                            <label for="filter-user" class="filter-input-label">User</label>
+                            <div class="filter-input-element">
+                                <select id="delete-user-drop" class="filter-input" name="delete-user-drop">
+                                    <option selected value="">Choose a user ID</option>
+                                    {{#each users}}
+                                    <option name = "delete-user-drop" value="{{this.userID}}">{{this.userID}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteUser" value="Delete User">
+                    <input class="btn" type="button" value="cancel" >
+                </form> 
+            </div><!-- delete -->
+        </div>
+
+
         <p>&nbsp;</p> <!-- WHITE SPACE-->
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
