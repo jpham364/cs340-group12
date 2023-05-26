@@ -48,7 +48,6 @@ updatePersonForm.addEventListener("submit", function (e) {
 
 })
 
-
 function updateRow(data, userID){
     let parsedData = JSON.parse(data);
     
@@ -62,11 +61,10 @@ function updateRow(data, userID){
             // Get the location of the row where we found the matching person ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of value
-            let td = updateRowIndex.getElementsByTagName("td")[3];
-
-            // Reassign homeworld to our value we updated to
-            td.innerHTML = parsedData[0].email; 
+            // Get td of email
+            let email = updateRowIndex.getElementsByTagName("td")[5];
+            // Reassign email to our value we updated to
+            email.innerHTML = parsedData[0].email; 
        }
     }
 }

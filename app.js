@@ -6,7 +6,6 @@
 // Most of the app.js implementation is from the ecampus resource to use a node.js starter app
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-
 // Step 0: set up Node.js / Express
 // Express
 var express = require('express');   // We are using the express library for the web server
@@ -15,21 +14,14 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
-
-
 PORT        = 5647;                 // Set a port number at the top so it's easy to change in the future
-
 
 // static files
 app.use(express.static('public'))
 
-
-
 // Step 1: Connecting to SQL database
 // Database
 var db = require('./db-connector');
-
 
 // Step 3: Integrating Handlebars
 const { engine } = require('express-handlebars');
@@ -37,14 +29,9 @@ var expressHBS = require('express-handlebars'); // importing expressHBS
 app.engine('.hbs', engine({extname: ".hbs"})); // Create HBS engine to process template
 app.set('view engine', '.hbs') // use HBS when it sees a .hbs file
 
-
-
 // This allows access to public, static directories for now
 // Make public directory (CSS, etc,.) available to client (user's browser)
 app.use(express.static('public'));
-
-
-
 
 
 /*
@@ -101,12 +88,8 @@ app.get('/users', function(req, res){
 // Step 5 Adding New Data
 app.post('/add-user-ajax', function(req, res){
 
-
     // Capture incoming data and parse into JS object
     let data = req.body;
-
-    // Capture NULL values (if applicable)
-
 
     // Create query and run it on database
     let query1 = `INSERT INTO Users(firstName, lastName, address, phoneNumber, email) 
@@ -163,44 +146,48 @@ app.delete('/delete-user-ajax/', function(req,res,next){
 })});
 
 
-
-
 app.put('/put-user-ajax', function(req,res,next){
   let data = req.body;
 
   let uID = parseInt(data.uID);
+
+
   let uEmail = data.email;
-
   let queryUpdateEmail = `UPDATE Users SET email = ? WHERE Users.userID = ?`;
-  let selectEmail = `SELECT * FROM Users;`
+  let selectEmail = `SELECT * FROM Users WHERE Users.email = ?;`
 
-        // Run the 1st query
-        db.pool.query(queryUpdateEmail, [uEmail, uID], function(error, rows, fields){
-            if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-            }
+    // Run the 1st query
+   
+    db.pool.query(queryUpdateEmail, [uEmail, uID], function(error, rows, fields){
+        if (error) {
 
-            // If there was no error, we run our second query and return that data so we can use it to update the people's
-            // table on the front-end
-            else
-            {
-                // Run the second query
-                db.pool.query(selectEmail, function(error, rows, fields) {
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
 
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        // res.send(rows);
-                        res.redirect('users');
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else
+        {
+            // Run the second query
+            db.pool.query(selectEmail, [uEmail], function(error, rows, fields) {
 
-                    }
-                })
-            }
-})});
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } 
+                else {
+                    res.send(rows);
+                    
+                }
+            })
+        }
+
+    })
+
+});
 
 
 

@@ -13,8 +13,6 @@ addUser.addEventListener("submit", function(e){
     let inputPNumber = document.getElementById("input-pNumber");
     let inputEmail = document.getElementById("input-email");
 
-
-
 	// get values inside of them
 	let fNameValue = inputFName.value;
     let lNameValue = inputLName.value;
@@ -90,12 +88,14 @@ addRowToTable = (data) => {
 	pNumberCell.innerText = newRow.phoneNumber;
 	emailCell.innerText = newRow.email;
 
-	deleteCell = document.createElement("button");
-	deleteCell.innerHTML = "Delete"
-	deleteCell.onclick = function(){
+	// Used chat GPT to help append button
+	let deleteButton = document.createElement("button");
+	deleteButton.innerHTML = "Delete";
+	deleteButton.onclick = function(){
 		deleteUser(newRow.userID)
 	};
 
+	deleteCell.appendChild(deleteButton);
 
 
 	row.appendChild(idCell);
@@ -116,7 +116,6 @@ addRowToTable = (data) => {
 	let option = document.createElement("option");
 	option.value = newRow.userID;
 	selectMenu.add(option);
-
 
 }
 
