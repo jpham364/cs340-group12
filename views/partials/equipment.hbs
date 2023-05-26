@@ -1,0 +1,173 @@
+<main class="content">
+            <aside class="filter-equipment">
+                <h2>Equipment</h2>
+
+                <label for="productTypeFilter">Filter by Product Type:</label>
+                <select id="productTypeFilter">
+                    <option value="0">All</option>
+                    <option value="1">Weight Machines</option>
+                    <option value="2">Free Weights</option>
+                    <option value="3">Cardio</option>
+                    <option value="4">Home-Gym Systems</option>
+                    <option value="5">Accessories</option>
+                </select>
+
+                <p>&nbsp;</p>
+
+                <div class="table-contents">
+                    <table border="5" cellpadding="10" id="equipment-table">
+                        <tr>
+                            <th>Equipment ID </th>
+                            <th>Equipment Name</th>
+                            <th>Equipment Description</th>
+                            <th>Equipment Cost</th>
+                            <th>Equipment Stock</th>
+                            <th>Product Type</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>Squat Rack</th>
+                            <th>A metal rack or cage consisting of support pillars with adjustable bars and hooks</th>
+                            <th>450.00</th>
+                            <th>21</th>
+                            <th>2</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>Treadmill</th>
+                            <th>For indoor use that simulates walking, jogging, or running</th>
+                            <th>330.00</th>
+                            <th>11</th>
+                            <th>3</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>Yoga Mat</th>
+                            <th>For your yoga classes!</th>
+                            <th>20.00</th>
+                            <th>30</th>
+                            <th>5</th>
+                        </tr>
+                    </table>
+                </div>
+            </aside>
+
+        </main>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <!-- browse -->
+        <div class="add-equipment-content">
+            <div id="insert">
+                <form class="addEquipment">
+                    <legend><strong>Add Equipment</strong></legend>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Description</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Cost</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Stock</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+                    <input class="btn" type="submit" id="AddEquipment" value="Add New Equipment">
+                    <input class="btn" type="button" value="Cancel">
+                </form>
+            </div>
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+
+        <div id="update" style="display: block">
+            <form class="updateEquipment">
+                <legend><strong>Update Equipment</strong></legend>
+                    <div class="update-equipment-container">
+                        <label for="filter-user" class="filter-input-label">Equipment</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Name</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Description</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Cost</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="update-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Stock</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="UpdateEquipment" value="Update Equipment">
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+        </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div class="delete-equipment-content">
+            <div id="delete" style="display: block">
+                <form class="deleteEquipment">
+                    <legend><strong>Delete Equipment</strong></legend>
+                        <div class="delete-equipment-container">
+                            <label for="filter-user" class="filter-input-label">User ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteEquipment" value="Delete Equipment">
+                    <input class="btn" type="button" value="Cancel" >
+                </form>  
+            </div><!-- delete -->
+        </div>
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+          <p>&nbsp;</p> <!-- WHITE SPACE-->

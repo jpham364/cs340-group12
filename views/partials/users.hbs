@@ -10,7 +10,7 @@
                    
 
                     <input type="submit" value = "Search First Name!">
-                    <a href='/users'><button>Cancel</button></a>
+                    <a href='/users'><button>Reset</button></a>
                 </form>
 
                 <div id="searchResults"></div>
@@ -30,8 +30,10 @@
                                 {{#each data.[0]}}
                                     <th>
                                         {{@key}}
+
                                     </th>
                                 {{/each}}
+                                <th>Deletes</th>
                             </tr>
                             
                         </thead>
@@ -54,7 +56,7 @@
                         </tbody>
                         
                     </table>
-                    <script src="./js/delete_user.js"></script>
+                    <script src="./js/users/delete_user.js"></script>
 
 
                 </div>
@@ -110,7 +112,7 @@
                     <input class="btn" type="button" value="Cancel">
                 </form>
 
-                <script src="./js/add_user.js"></script>
+                <script src="./js/users/add_user.js"></script>
 
 
             </div>
@@ -123,7 +125,7 @@
         <div class="update-user-content">
             <div id="update" >
                 <form class="updateUser" id="update-user-form-ajax">
-                    <legend><strong>Update User</strong></legend>
+                    <legend><strong>Update Email</strong></legend>
                        
 
                         <div class="update-user-container">
@@ -148,35 +150,11 @@
                     <input class="btn" type="button" value="Cancel" >
                 </form> 
 
-                <script src="./js/update_user.js"></script>
+                <script src="./js/users/update_user.js"></script>
             </div>
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
-
-        <!-- Delete User -->
-        <div class="delete-user-content">
-            <div id="delete" style="display: block">
-                <form class="deleteUser" method="POST" action="/delete-user-form">
-                    <legend><strong>Delete User</strong></legend>
-                        <div class="delete-user-container">
-                            <label for="filter-user" class="filter-input-label">User</label>
-                            <div class="filter-input-element">
-                                <select id="delete-user-drop" class="filter-input" name="delete-user-drop">
-                                    <option selected value="">Choose a user ID</option>
-                                    {{#each users}}
-                                    <option name = "delete-user-drop" value="{{this.userID}}">{{this.userID}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                        </div>  
-                    <input class="btn" type="submit" id="DeleteUser" value="Delete User">
-                    <input class="btn" type="button" value="cancel" >
-                </form> 
-            </div><!-- delete -->
-        </div>
-
-
         <p>&nbsp;</p> <!-- WHITE SPACE-->
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
