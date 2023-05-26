@@ -79,6 +79,8 @@ addRowToTable = (data) => {
 	let pNumberCell = document.createElement("td")
 	let emailCell = document.createElement("td")
 
+	let deleteCell = document.createElement("td");
+
 
 	// fill with cells with correct data
 	idCell.innerText = newRow.userID;
@@ -88,6 +90,12 @@ addRowToTable = (data) => {
 	pNumberCell.innerText = newRow.phoneNumber;
 	emailCell.innerText = newRow.email;
 
+	deleteCell = document.createElement("button");
+	deleteCell.innerHTML = "Delete"
+	deleteCell.onclick = function(){
+		deleteUser(newRow.userID)
+	};
+
 
 
 	row.appendChild(idCell);
@@ -96,6 +104,9 @@ addRowToTable = (data) => {
 	row.appendChild(addressCell);
 	row.appendChild(pNumberCell);
 	row.appendChild(emailCell);
+	row.appendChild(deleteCell);
+
+	row.setAttribute('data-value', newRow.userID);
 
 	// Add new row to table
 	currTable.appendChild(row);

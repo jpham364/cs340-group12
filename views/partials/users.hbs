@@ -40,20 +40,21 @@
                         <tbody>
 
                             {{#each data}}
-                            <tr>
+                            <tr data-value={{this.userID}}>
                                 <td>{{this.userID}}</td>
                                 <td>{{this.firstName}}</td>
                                 <td>{{this.lastName}}</td>
                                 <td>{{this.address}}</td>
                                 <td>{{this.phoneNumber}}</td>
                                 <td>{{this.email}}</td>
+                                <td><button onclick="deleteUser({{this.userID}})">Delete</button></td>
                             </tr>
                             {{/each}}
 
                         </tbody>
                         
                     </table>
-
+                    <script src="./js/delete_user.js"></script>
 
 
                 </div>
@@ -67,7 +68,7 @@
             <div id="insert">
 
 
-                <form id="add-user-form-ajax">
+                <form id="add-user-form-ajax" class="addUser">
                     <legend><strong>Add User</strong></legend>
 
                     <div class="add-user-container">
@@ -179,32 +180,6 @@
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
-
-
-
-
-        <!-- Delete User -->
-        <div class="delete-user-content">
-            <div id="delete" style="display: block">
-                <form class="deleteUser">
-                    <legend><strong>Delete User</strong></legend>
-                        <div class="delete-user-container">
-                            <label for="filter-user" class="filter-input-label">User</label>
-                            <div class="filter-input-element">
-                                <select id="filter-user" class="filter-input" name="filter-user">
-                                    <option selected value="">Choose a user ID</option>
-                                    {{#each users}}
-                                    <option value="{{this.userID}}">{{this.userID}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                        </div>  
-                    <input class="btn" type="submit" id="DeleteUser" value="Delete User">
-                    <input class="btn" type="button" value="cancel" >
-                </form> 
-            </div><!-- delete -->
-        </div>
-
         <p>&nbsp;</p> <!-- WHITE SPACE-->
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
