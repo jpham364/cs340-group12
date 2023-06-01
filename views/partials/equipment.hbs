@@ -73,39 +73,59 @@
         <!-- browse -->
         <div class="add-equipment-content">
             <div id="insert">
-                <form class="addEquipment">
+                <form id="add-equipment-form-ajax" class="addEquipment">
                     <legend><strong>Add Equipment</strong></legend>
 
                     <div class="add-equipment-container">
                         <label for="filter-text" class="filter-input-label">Equipment Name</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-eName" id="input-eName" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-equipment-container">
                         <label for="filter-text" class="filter-input-label">Equipment Description</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-eDesc" id="input-eDesc" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-equipment-container">
                         <label for="filter-text" class="filter-input-label">Cost</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-cost" id="input-cost" class="filter-input">
                         </div>
                     </div>
 
                     <div class="add-equipment-container">
                         <label for="filter-text" class="filter-input-label">Stock</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-stock" id="input-stock" class="filter-input">
                         </div>
                     </div>
+
+                    <div class="add-equipment-container">
+                        <label for="filter-text" class="filter-input-label">Product Type</label>
+                        <div class="filter-input-element">
+                            
+                           
+                            <select id="PTSelect" class="filter-input" name="filter-user">
+
+                                <option value="">Choose a Product Type</option>
+                                {{#each ptData}}
+                                <option name = "filter-user-drop" value="{{this.productTypeID}}">{{this.typeDescription}}</option>
+                                {{/each}}
+                                
+                            </select>
+                        </div>
+                    </div>
+
                     <input class="btn" type="submit" id="AddEquipment" value="Add New Equipment">
                     <input class="btn" type="button" value="Cancel">
                 </form>
+
+                <script src="./js/equipment/add_equipment.js"></script>
+
             </div>
         </div>
 
@@ -159,5 +179,8 @@
                 <input class="btn" type="button" value="Cancel" >
             </form> 
         </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
 
      

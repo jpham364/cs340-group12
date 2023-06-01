@@ -84,6 +84,62 @@ app.get('/equipment', function(req, res){
 
 })
 
+app.post('/add-equipment-ajax', function(req, res){
+
+    let data = req.body;
+
+    let query1 = `INSERT INTO Equipment
+    (
+        equipmentName, 
+        equipmentDescription, 
+        equipmentCost, 
+        equipmentStock, 
+        productTypeID
+    )
+    VALUES
+    (
+    
+        "${data['eName']}", 
+        "${data['eDesc']}", 
+        "${data['eCost']}", 
+        "${data['eStock']}", 
+        "${data['ePT']}"
+    
+    );`;
+
+    db.pool.query(query1, function(error, rows, fields){
+
+        if(error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            query2 = `SELECT * FROM Equipment`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+
+                    res.send(rows)
+
+                }
+
+            })
+        }
+
+    })
+
+
+})
+
+
 
 // This is for users
 app.get('/users', function(req, res){
