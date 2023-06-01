@@ -7,17 +7,14 @@ addOrder.addEventListener("submit", function(e){
 	e.preventDefault();
 
 	// get form fields
-	// let inputFName = document.getElementById("input-fName");
     let inputDate = document.getElementById("input-date");
     let inputNumItems = document.getElementById("input-numItems");
     let inputCost = document.getElementById("input-cost");
 
 	// get values inside of them
-	// let fNameValue = inputFName.value;
     let dateValue = inputDate.value;
     let numItemsValue = inputNumItems.value;
     let costValue = inputCost.value;
-    // let emailValue = inputEmail.value;
 
     // place data we want to snd in a javascript object
     let data = {
@@ -43,8 +40,6 @@ addOrder.addEventListener("submit", function(e){
             inputDate.value = '';
             inputNumItems.value = '';
             inputCost.value = '';
-            // inputPNumber.value = '';
-            // inputEmail.value = '';
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("Error with input!");
         }
@@ -73,8 +68,6 @@ addRowToTable = (data) => {
 	let dateCell = document.createElement("td")
 	let numItemsCell = document.createElement("td")
 	let costCell = document.createElement("td")
-	// let pNumberCell = document.createElement("td")
-	// let emailCell = document.createElement("td")
 
 	let deleteCell = document.createElement("td");
 
@@ -84,8 +77,6 @@ addRowToTable = (data) => {
 	dateCell.innerText = newRow.orederDate;
 	numItemsCell.innerText = newRow.numItems;
 	costCell.innerText = newRow.totalCost;
-	// pNumberCell.innerText = newRow.phoneNumber;
-	// emailCell.innerText = newRow.email;
 
 	// Used chat GPT to help append button
 	let deleteButton = document.createElement("button");
@@ -101,8 +92,6 @@ addRowToTable = (data) => {
 	row.appendChild(dateCell);
 	row.appendChild(numItemsCell);
 	row.appendChild(costCell);
-	// row.appendChild(pNumberCell);
-	// row.appendChild(emailCell);
 	row.appendChild(deleteCell);
 
 	row.setAttribute('data-value', newRow.orderID);
