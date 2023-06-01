@@ -4,17 +4,17 @@
                 
                 <form id="search-p-t" method='GET' action='/equipment'>
                     <h2>Equipment</h2>
-                    <label for="productTypeFilter">Filter by Product Type:</label>
+                    {{!-- <label for="productTypeFilter">Filter by Product Type:</label>
                     <select id="productTypeFilter">
 
                         <option value="">All</option>
                         {{#each ptData}}
-                        <option name = "filter-user-drop" value="{{this.typeDescription}}">{{this.typeDescription}}</option>
+                        <option name = "filter-user-drop" value="{{this.productTypeID}}">{{this.typeDescription}}</option>
                         {{/each}}
                         
                     </select>
 
-                    <input type="submit" value = "Filter!">
+                    <input class="btn" type="submit" id="ptSearch"> --}}
                 </form>
 
                 <p>&nbsp;</p>
@@ -50,7 +50,7 @@
                                 <td>{{this.equipmentCost}}</td>
                                 <td>{{this.equipmentStock}}</td>
                                 <td>{{this.productTypeID}}</td>
-                                <td><button onclick="deleteUser({{this.equipmentID}})">Delete</button></td>
+                                <td><button onclick="deleteEquipment({{this.equipmentID}})">Delete</button></td>
                             </tr>
                             {{/each}}
 
@@ -63,6 +63,8 @@
 
 
                     </table>
+                    <script src="./js/equipment/delete_equipment.js"></script>
+            
                 </div>
             </aside>
 
@@ -132,7 +134,7 @@
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
 
-        <div id="update" style="display: block">
+        {{!-- <div id="update" style="display: block">
             <form class="updateEquipment">
                 <legend><strong>Update Equipment</strong></legend>
                     <div class="update-equipment-container">
@@ -178,7 +180,7 @@
                 <input class="btn" type="submit" id="UpdateEquipment" value="Update Equipment">
                 <input class="btn" type="button" value="Cancel" >
             </form> 
-        </div><!-- update -->
+        </div><!-- update --> --}}
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
         <p>&nbsp;</p> <!-- WHITE SPACE-->

@@ -140,6 +140,28 @@ app.post('/add-equipment-ajax', function(req, res){
 })
 
 
+app.delete('/delete-equipment-ajax/', function(req,res,next){
+    let data = req.body;
+    let equipmentID = parseInt(data.equipmentID);
+    let delete_equipment= `DELETE FROM Equipment WHERE equipmentID = ?`;
+  
+  
+          // Run the 1st query
+          db.pool.query(delete_equipment, [equipmentID], function(error, rows, fields){
+              if (error) {
+                  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                  console.log(error);
+                  res.sendStatus(400);
+              }
+  
+              else
+              {
+              
+                  res.sendStatus(204);
+                  
+              }
+  })});
+
 
 // This is for users
 app.get('/users', function(req, res){
