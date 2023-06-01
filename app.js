@@ -52,14 +52,17 @@ app.get('/review', function(req, res){
 
     query1 = "SELECT * FROM Reviews";
 
-    // This is for the drop down menu, the same for both cases
-    let query2 = "SELECT reviewID FROM Reviews;";
+    // This is for the drop down menu for UserID
+    let query2 = "SELECT * FROM Users;";
+
+    // This is for the drop down menu for EquipmentID
+    let query3 = "SELECT * FROM Equipment;"
 
     db.pool.query(query1, function(error, rows, fields){
          
         // {data: rows}
         // This sends the renderer an object
-        // where 'data' is equal to 'rows' we 
+        // where 'data' is equal to 'rows' we s
         // got from the query
         let reviews = rows;
 
@@ -67,8 +70,17 @@ app.get('/review', function(req, res){
         db.pool.query(query2, (error, rows, fields) => {
 
             // Save user IDs
-            let reviewIDs = rows;
-            return res.render('partials/review', {data: reviews, reviews: reviewIDs});
+            let userIDs = rows;
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let equipmentIDs = rows;
+                return res.render('partials/review', {data: reviews, user: userIDs, equip: equipmentIDs});
+
+            })
+
+
+            
         })
 
 
@@ -94,7 +106,7 @@ app.post('/add-review-ajax', function(req, res){
         "${data['rUserID']}", 
         "${data['rEquipmentID']}", 
         "${data['rReviewValue']}", 
-        "${data['rStarsValue']}", 
+        "${data['rStarsValue']}" 
     
     );`;
 
@@ -650,6 +662,54 @@ app.delete('/delete-productType-ajax/', function(req,res,next){
                   
               }
   })});
+
+
+/*//////////////////////
+        ORDER EQUIPMENT
+*///////////////////////
+
+
+app.get('/productType', function(req, res){
+
+    // let query1 = "SELECT * FROM Users;";
+    let query1;
+
+    // If there is no query string, we perform simple SELECT
+    // if(req.query.fname === undefined){
+    query1 = "SELECT * FROM ProductType";
+    // }
+
+    // else{
+    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
+    // }
+
+
+
+    // This is for the drop down menu, the same for both cases
+    let query2 = "SELECT productTypeID FROM ProductType;";
+
+    db.pool.query(query1, function(error, rows, fields){
+         
+        // {data: rows}
+        // This sends the renderer an object
+        // where 'data' is equal to 'rows' we 
+        // got from the query
+        let productTypes = rows;
+
+        // res.render('partials/users',{data: users});
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save user IDs
+            let productTypeIDs = rows;
+            return res.render('partials/productType', {data: productTypes, productTypes: productTypeIDs});
+        })
+
+
+
+    })
+
+});
+
 
 
 /*

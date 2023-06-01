@@ -4,36 +4,7 @@
 
                 <div class="table-contents">
                     <table border="5" cellpadding="10" id="review-table">
-                        {{!-- <tr>
-                            <th>Review ID</th>
-                            <th>User ID</th>
-                            <th>Equipment ID</th>
-                            <th>Review Description</th>
-                            <th>Stars</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>3</th>
-                            <th>1</th>
-                            <th>This equipment is really amazing and I really love it. I would recommend to others.</th>
-                            <th>4</th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>This equipment is alright. It is just good for running.</th>
-                            <th>2</th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>This equipment is bad. Only good for stretching but you can just stretch on the floor.</th>
-                            <th>1</th>
-                        </tr> --}}
-
-                        <!-- This is for the first row, print the keys -->
+                        
                         <thead>
 
                             
@@ -78,14 +49,14 @@
             <form id="add-review-form-ajax" class="addReview">
                 <legend><strong>Add Review</strong></legend>
                     <div class="add-review-container">
-                        <label for="filter-user" class="filter-input-label">User</label>
+                        <label for="add-review" class="filter-input-label">User</label>
                         <div class="filter-input-element">
 
                             <select id="userSelect" class="filter-input" name="filter-user">
 
-                            <option selected value="">Choose a user ID</option>
-                            {{#each userData}}
-                            <option name = "filter-user-drop" value="{{this.userID}}">{{this.userID}}</option>
+                                <option selected value="">Choose a user ID</option>
+                                {{#each user}}
+                                <option name = "add-user-drop" value="{{this.userID}}">{{this.userID}}</option>
                             {{/each}}
 
                             </select>
@@ -98,9 +69,9 @@
 
                             <select id="equipmentSelect" class="filter-input" name="filter-user">
 
-                            <option selected value="">Choose an equipment ID </option>
-                            {{#each equipData}}
-                            <option name = "filter-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                <option selected value="">Choose an equipment</option>
+                                {{#each equip}}
+                                <option name = "add-equipment-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                             {{/each}}
 
                             </select>
@@ -128,9 +99,10 @@
                         </div>
                     </div>
               
-                <input class="btn" type="submit" id="UpdateReview" value="Add Review">
-                <input class="btn" type="button" value="Cancel" >
+                <input class="btn" type="submit" id="AddReview" value="Add Review">
+                
             </form> 
+            <script src="./js/review/add_review.js"></script>
         </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->

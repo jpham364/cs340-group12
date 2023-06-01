@@ -42,7 +42,6 @@ addReview.addEventListener("submit", function(e){
             inputUID.value = '';
             inputEID.value = '';
             inputReview.value = '';
-            inputPNumber.value = '';
             inputStars.value = '';
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("Error with input!");
@@ -68,7 +67,7 @@ addRowToTable = (data) => {
 
 	// create row and 5 cells
 	let row = document.createElement("tr");
-	let idCell = document.createElement("td")
+	let ridCell = document.createElement("td")
 	let uidCell = document.createElement("td")
 	let eidCell = document.createElement("td")
 	let reviewCell = document.createElement("td")
@@ -78,7 +77,7 @@ addRowToTable = (data) => {
 
 
 	// fill with cells with correct data
-	idCell.innerText = newRow.reviewID;
+	ridCell.innerText = newRow.reviewID;
 	uidCell.innerText = newRow.userID;
 	eidCell.innerText = newRow.equipmentID;
 	reviewCell.innerText = newRow.reviewDescription;
@@ -88,17 +87,18 @@ addRowToTable = (data) => {
 	let deleteButton = document.createElement("button");
 	deleteButton.innerHTML = "Delete";
 	deleteButton.onclick = function(){
-		deleteEquipment(newRow.equipmentID)
+		deleteReview(newRow.reviewID)
 	};
 
 	deleteCell.appendChild(deleteButton);
 
 
-	row.appendChild(idCell);
+	row.appendChild(ridCell);
 	row.appendChild(uidCell);
 	row.appendChild(eidCell);
 	row.appendChild(reviewCell);
 	row.appendChild(starsCell);
+	row.appendChild(deleteCell);
 
 	row.setAttribute('data-value', newRow.reviewID);
 
