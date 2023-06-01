@@ -43,48 +43,9 @@ app.get('/', function(req, res){
 
 });
 
-
-app.get('/equipment', function(req, res){
-
-    let query1;
-
-    query1 = `SELECT * FROM Orders;`;
-
-    let query2 = `SELECT * FROM Equipment;`
-
-
-    db.pool.query(query1, function(error, rows, fields){
-
-        let equipment = rows;
-
-        db.pool.query(query2, (error, rows, fields) => {
-
-            // Is allows to display product Type
-            // save productType IDs
-            let ptIDs = rows;
-
-            let ptIDMap = {}
-            ptIDs.map(ptID => {
-                let id = parseInt(ptID.productTypeID, 10);
-                ptIDMap[id] = ptID["typeDescription"];
-            })
-
-            // Overwrite productTypeID
-            equipment = equipment.map(oneEquipment => {
-                return Object.assign(oneEquipment, {productTypeID: ptIDMap[oneEquipment.productTypeID]})
-            })
-
-            return res.render('partials/equipment', {data: equipment, ptData: ptIDs});
-
-        })
-
-        
-    })
-
-})
-
-
-// This is for review
+/*//////////////////////
+        REVIEW
+*///////////////////////
 app.get('/review', function(req, res){
 
     let query1;
@@ -193,7 +154,9 @@ app.delete('/delete-review-ajax/', function(req,res,next){
   })});
 
 
-// This is for equipment 
+/*//////////////////////
+        EQUIPMENT
+*///////////////////////
 app.get('/equipment', function(req, res){
 
     let query1;
@@ -313,7 +276,9 @@ app.delete('/delete-equipment-ajax/', function(req,res,next){
   })});
 
 
-// This is for users
+/*//////////////////////
+        USERS
+*///////////////////////
 app.get('/users', function(req, res){
 
     // let query1 = "SELECT * FROM Users;";
@@ -463,8 +428,10 @@ app.put('/put-user-ajax', function(req,res,next){
 
 });
 
-// Order
 
+/*//////////////////////
+        ORDER
+*///////////////////////
 app.get('/order', function(req, res){
 
     // let query1 = "SELECT * FROM Users;";
@@ -579,7 +546,9 @@ app.delete('/delete-order-ajax/', function(req,res,next){
 })});
 
 
-// Product Type
+/*//////////////////////
+        PRODUCTTYPE
+*///////////////////////
 
 app.get('/productType', function(req, res){
 

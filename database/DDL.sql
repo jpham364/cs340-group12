@@ -67,10 +67,11 @@ CREATE TABLE Equipment(
     equipmentDescription varchar(500) NOT NULL,
     equipmentCost decimal(19,2) NOT NULL,
     equipmentStock int NOT NULL,
-    productTypeID int NOT NULL,
+    productTypeID int,
 
     PRIMARY KEY (equipmentID),
     FOREIGN KEY (productTypeID) REFERENCES ProductType(productTypeID)
+        ON DELETE SET NULL
 );
 
 CREATE TABLE ProductType(
