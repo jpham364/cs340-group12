@@ -81,7 +81,7 @@
                         <label for="filter-user" class="filter-input-label">User</label>
                         <div class="filter-input-element">
 
-                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <select id="userSelect" class="filter-input" name="filter-user">
 
                             <option selected value="">Choose a user ID</option>
                             {{#each userData}}
@@ -96,7 +96,7 @@
                         <label for="filter-user" class="filter-input-label">Equipment</label>
                         <div class="filter-input-element">
 
-                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <select id="equipmentSelect" class="filter-input" name="filter-user">
 
                             <option selected value="">Choose an equipment ID </option>
                             {{#each equipData}}
@@ -108,9 +108,9 @@
                     </div>  
 
                     <div class="add-review-container">
-                        <label for="filter-text" class="filter-input-label">Review</label>
+                        <label for="filter-text" class="filter-input-label">Review Description</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-review" id="input-review" class="filter-input">
                         </div>
                     </div>
 
@@ -118,7 +118,7 @@
                         <label for="filter-text" class="filter-input-label">Stars</label>
                         <div class="filter-input-element">
                             <select id="stars-select" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
+                                {{!-- <option selected value="">Choose a number</option> --}}
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -128,7 +128,7 @@
                         </div>
                     </div>
               
-                <input class="btn" type="submit" id="UpdateReview" value="Update Review">
+                <input class="btn" type="submit" id="UpdateReview" value="Add Review">
                 <input class="btn" type="button" value="Cancel" >
             </form> 
         </div><!-- update -->

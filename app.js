@@ -44,6 +44,46 @@ app.get('/', function(req, res){
 });
 
 
+app.get('/equipment', function(req, res){
+
+    let query1;
+
+    query1 = `SELECT * FROM Orders;`;
+
+    let query2 = `SELECT * FROM Equipment;`
+
+
+    db.pool.query(query1, function(error, rows, fields){
+
+        let equipment = rows;
+
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Is allows to display product Type
+            // save productType IDs
+            let ptIDs = rows;
+
+            let ptIDMap = {}
+            ptIDs.map(ptID => {
+                let id = parseInt(ptID.productTypeID, 10);
+                ptIDMap[id] = ptID["typeDescription"];
+            })
+
+            // Overwrite productTypeID
+            equipment = equipment.map(oneEquipment => {
+                return Object.assign(oneEquipment, {productTypeID: ptIDMap[oneEquipment.productTypeID]})
+            })
+
+            return res.render('partials/equipment', {data: equipment, ptData: ptIDs});
+
+        })
+
+        
+    })
+
+})
+
+
 // This is for review
 app.get('/review', function(req, res){
 
@@ -73,6 +113,59 @@ app.get('/review', function(req, res){
 
 
     })
+
+});
+
+app.post('/add-review-ajax', function(req, res){
+
+    let data = req.body;
+
+    let query1 = `INSERT INTO Reviews
+    (
+        userID, 
+        equipmentID, 
+        reviewDescription, 
+        stars
+    )
+    VALUES
+    (
+    
+        "${data['rUserID']}", 
+        "${data['rEquipmentID']}", 
+        "${data['rReviewValue']}", 
+        "${data['rStarsValue']}", 
+    
+    );`;
+
+    db.pool.query(query1, function(error, rows, fields){
+
+        if(error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            query2 = `SELECT * FROM Reviews`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+
+                    res.send(rows)
+
+                }
+
+            })
+        }
+
+    })
+
 
 });
 
@@ -139,7 +232,7 @@ app.get('/equipment', function(req, res){
         
     })
 
-})
+});
 
 app.post('/add-equipment-ajax', function(req, res){
 
