@@ -1,0 +1,64 @@
+<main class="content">
+    <aside class="filter-equipment">
+        <h2>Product Type</h2>
+
+        <p>&nbsp;</p>
+
+
+        <div class="table-contents">
+            <table border="5" cellpadding="10" id="productType-table">
+                <thead>
+
+                    <tr>
+                        {{#each data.[0]}}
+                            <th>
+                                {{@key}}
+
+                            </th>
+                        {{/each}}
+                        <th>Deletes</th>
+                    </tr>
+                    
+                </thead>
+
+                <tbody>
+
+                    {{#each data}}
+                    <tr data-value={{this.productTypeID}}>
+                        <td>{{this.productTypeID}}</td>
+                        <td>{{this.typeDescription}}</td>
+                        <td><button onclick="deleteOrder({{this.productTypeID}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+            <script src="./js/productType/delete_productType.js"></script>
+        </div>
+    </aside>
+</main>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div class="product-type-content">
+            <div id="update" style="display: block">
+                <form id="add-productType-form-ajax" class="productType">
+                    <legend><strong>Add Product Type</strong></legend>
+                    <div class="product-type-container">
+                        <label for="filter-text" class="filter-input-label">Type Description</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="input-description" id="input-description" class="filter-input">
+                        </div>
+                    </div>
+                <input class="btn" type="submit" id="ProductType" value="Add Type">
+                <input class="btn" type="button" value="Cancel" >
+                </form> 
+                <script src="./js/productType/add_productType.js"></script>
+
+            </div><!-- update -->
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->

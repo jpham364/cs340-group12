@@ -291,6 +291,212 @@ app.put('/put-user-ajax', function(req,res,next){
 
 });
 
+// Order
+
+app.get('/order', function(req, res){
+
+    // let query1 = "SELECT * FROM Users;";
+    let query1;
+
+    // If there is no query string, we perform simple SELECT
+    // if(req.query.fname === undefined){
+    query1 = "SELECT * FROM Orders";
+    // }
+
+    // else{
+    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
+    // }
+
+
+
+    // This is for the drop down menu, the same for both cases
+    let query2 = "SELECT orderID FROM Orders;";
+
+    db.pool.query(query1, function(error, rows, fields){
+         
+        // {data: rows}
+        // This sends the renderer an object
+        // where 'data' is equal to 'rows' we 
+        // got from the query
+        let orders = rows;
+
+        // res.render('partials/users',{data: users});
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save user IDs
+            let orderIDs = rows;
+            return res.render('partials/order', {data: orders, orders: orderIDs});
+        })
+
+
+
+    })
+
+});
+
+// Step 5 Adding New Data
+app.post('/add-order-ajax', function(req, res){
+
+    // Capture incoming data and parse into JS object
+    let data = req.body;
+
+    // Create query and run it on database
+    let query1 = `INSERT INTO Orders(userID, orderDate, numItems, totalCost) 
+                   VALUES ("${data['userID']}", "${data['orderDate']}", "${data['numItems']}", "${data['totalCost']}")`;
+    db.pool.query(query1, function(error, rows, fields){
+
+         // Check to see if there was an error
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            query2 = `SELECT * FROM Orders;`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+                    res.send(rows);
+                }
+            })
+        }
+
+    });
+
+});
+
+app.delete('/delete-order-ajax/', function(req,res,next){
+    let data = req.body;
+    let orderID = parseInt(data.orderID);
+    let delete_order= `DELETE FROM Orders WHERE orderID = ?`;
+  
+  
+          // Run the 1st query
+          db.pool.query(delete_order, [orderID], function(error, rows, fields){
+              if (error) {
+                  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                  console.log(error);
+                  res.sendStatus(400);
+              }
+  
+              else
+              {
+              
+                  res.sendStatus(204);
+                  
+              }
+})});
+
+
+// Product Type
+
+app.get('/productType', function(req, res){
+
+    // let query1 = "SELECT * FROM Users;";
+    let query1;
+
+    // If there is no query string, we perform simple SELECT
+    // if(req.query.fname === undefined){
+    query1 = "SELECT * FROM ProductType";
+    // }
+
+    // else{
+    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
+    // }
+
+
+
+    // This is for the drop down menu, the same for both cases
+    let query2 = "SELECT productTypeID FROM ProductType;";
+
+    db.pool.query(query1, function(error, rows, fields){
+         
+        // {data: rows}
+        // This sends the renderer an object
+        // where 'data' is equal to 'rows' we 
+        // got from the query
+        let productTypes = rows;
+
+        // res.render('partials/users',{data: users});
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save user IDs
+            let productTypeIDs = rows;
+            return res.render('partials/productType', {data: productTypes, productTypes: productTypeIDs});
+        })
+
+
+
+    })
+
+});
+
+app.post('/add-productType-ajax', function(req, res){
+
+    // Capture incoming data and parse into JS object
+    let data = req.body;
+
+    // Create query and run it on database
+    let query1 = `INSERT INTO ProductType(typeDescription) 
+                   VALUES ("${data['description']}")`;
+    db.pool.query(query1, function(error, rows, fields){
+
+         // Check to see if there was an error
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            query2 = `SELECT * FROM ProductType;`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+                    res.send(rows);
+                }
+            })
+        }
+
+    });
+
+});
+
+
+app.delete('/delete-productType-ajax/', function(req,res,next){
+    let data = req.body;
+    let productTypeID = parseInt(data.productTypeID);
+    let delete_productType= `DELETE FROM ProductType WHERE productTypeID = ?`;
+  
+  
+          // Run the 1st query
+          db.pool.query(delete_productType, [productTypeID], function(error, rows, fields){
+              if (error) {
+                  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                  console.log(error);
+                  res.sendStatus(400);
+              }
+  
+              else
+              {
+              
+                  res.sendStatus(204);
+                  
+              }
+  })});
 
 
 /*
