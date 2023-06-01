@@ -669,24 +669,22 @@ app.delete('/delete-productType-ajax/', function(req,res,next){
 *///////////////////////
 
 
-app.get('/productType', function(req, res){
+app.get('/orderEquipment', function(req, res){
 
     // let query1 = "SELECT * FROM Users;";
     let query1;
 
-    // If there is no query string, we perform simple SELECT
-    // if(req.query.fname === undefined){
-    query1 = "SELECT * FROM ProductType";
-    // }
-
-    // else{
-    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
-    // }
+    query1 = "SELECT * FROM OrderEquipment;";
 
 
+    // This is for the dropdown menu for orderIDS
+    let query2 = "SELECT * FROM Orders;"
+
+    // This is the dropdown menu for EquipmentID
+    let query3 = "SELECT * FROM Equipment;"
 
     // This is for the drop down menu, the same for both cases
-    let query2 = "SELECT productTypeID FROM ProductType;";
+    // let query2 = "SELECT productTypeID FROM ProductType;";
 
     db.pool.query(query1, function(error, rows, fields){
          
@@ -694,14 +692,23 @@ app.get('/productType', function(req, res){
         // This sends the renderer an object
         // where 'data' is equal to 'rows' we 
         // got from the query
-        let productTypes = rows;
+        let orderEquipments = rows;
 
-        // res.render('partials/users',{data: users});
+        // res.render('partials/orderEquipment',{data: orderEquipments});
         db.pool.query(query2, (error, rows, fields) => {
 
-            // Save user IDs
-            let productTypeIDs = rows;
-            return res.render('partials/productType', {data: productTypes, productTypes: productTypeIDs});
+            // Save order IDs
+            let orderIDs = rows;
+
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                // save equipment IDs
+                let equipmentIDs = rows;
+                return res.render('partials/orderEquipment', {data: orderEquipments, data1: orderIDs, data2: equipmentIDs});
+            })
+
+            
         })
 
 
