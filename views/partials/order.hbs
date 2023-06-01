@@ -1,0 +1,140 @@
+
+<main class="content">
+    <aside class="filter-equipment">
+        <h2>Order</h2>
+
+
+        <p>&nbsp;</p>
+
+        <div class="table-contents">
+            <table border="5" cellpadding="10" id="order-table">
+                
+                <thead>
+
+                    
+                    <tr>
+                        {{#each data.[0]}}
+                            <th>
+                                {{@key}}
+
+                            </th>
+                        {{/each}}
+                        <th>Deletes</th>
+                    </tr>
+                    
+                </thead>
+
+
+                    <!-- Body section -->
+                <tbody>
+
+                    {{#each data}}
+                    <tr data-value={{this.orderID}}>
+                        <td>{{this.orderID}}</td>
+                        <td>{{this.userID}}</td>
+                        <td>{{this.orderDate}}</td>
+                        <td>{{this.numItems}}</td>
+                        <td>{{this.totalCost}}</td>
+                        <td><button onclick="deleteOrder({{this.orderID}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+            <script src="./js/orders/delete_order.js"></script>
+
+        </div>
+    </aside>
+</main>
+
+
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div class="add-order-content">
+            <div id="insert" style="display: block">
+                <form id="add-order-form-ajax" class="addOrder">
+                    <legend><strong>Add Order</strong></legend>
+
+                    <div class="add-order-container">
+                        <label for="filter-user" class="filter-input-label">User ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-order" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            {{#each orders}}
+                            <option name = "delete-order-drop" value="{{this.userID}}">{{this.userID}}</option>
+                            {{/each}}
+                            </select>
+                        </div>
+                    </div>  
+
+                    {{!-- <div class="add-order-container">
+                        <label for="filter-user" class="filter-input-label">Order ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            {{#each orders}}
+                            <option name = "delete-user-drop" value="{{this.userID}}">{{this.userID}}</option>
+                            {{/each}}
+                            </select>
+                        </div>
+                    </div>   --}}
+                    
+                    <div class="add-order-container">
+                        <label for="filter-text" class="filter-input-label">Order Date</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="input-date" id="input-date" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-order-container">
+                        <label for="filter-text" class="filter-input-label">Item Numbers</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="input-numItems" id="input-numItems" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-order-container">
+                        <label for="filter-text" class="filter-input-label">Cost</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="input-cost" id="input-cost" class="filter-input">
+                        </div>
+                    </div>
+
+                    <input class="btn" type="submit" id="" value="Add New Order">
+                    <input class="btn" type="button" value="Cancel">
+                </form>
+                <script src="./js/orders/add_order.js"></script>
+
+            </div>
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        
+        {{!-- <div class="delete-order-content">
+            <div id="delete" style="display: block">
+                <form class="deleteOrder">
+                    <legend><strong>Delete order</strong></legend>
+                        <div class="delete-order-container">
+                            <label for="filter-user" class="filter-input-label">Order ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteOrder" value="Delete Order">
+                    <input class="btn" type="button" value="cancel" >
+                </form> 
+            </div><!-- delete -->
+        </div> --}}
+
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
+          <p>&nbsp;</p> <!-- WHITE SPACE-->
