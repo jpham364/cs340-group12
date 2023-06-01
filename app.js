@@ -43,6 +43,49 @@ app.get('/', function(req, res){
 
 });
 
+// This is for equipment 
+app.get('/equipment', function(req, res){
+
+    let query1;
+
+    query1 = `SELECT * FROM Equipment;`;
+
+
+    let query2 = `SELECT * FROM ProductType;`
+
+
+    db.pool.query(query1, function(error, rows, fields){
+
+        let equipment = rows;
+
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Is allows to display product Type
+            // save productType IDs
+            let ptIDs = rows;
+
+            let ptIDMap = {}
+            ptIDs.map(ptID => {
+                let id = parseInt(ptID.productTypeID, 10);
+                ptIDMap[id] = ptID["typeDescription"];
+            })
+
+            // Overwrite productTypeID
+            equipment = equipment.map(oneEquipment => {
+                return Object.assign(oneEquipment, {productTypeID: ptIDMap[oneEquipment.productTypeID]})
+            })
+
+            return res.render('partials/equipment', {data: equipment, ptData: ptIDs});
+
+        })
+
+        
+    })
+
+})
+
+
+// This is for users
 app.get('/users', function(req, res){
 
     // let query1 = "SELECT * FROM Users;";
@@ -50,7 +93,7 @@ app.get('/users', function(req, res){
 
     // If there is no query string, we perform simple SELECT
     if(req.query.fname === undefined){
-        query1 = "SELECT * FROM Users";
+        query1 = `SELECT * FROM Users`;
     }
 
     else{
@@ -151,6 +194,10 @@ app.put('/put-user-ajax', function(req,res,next){
 
   let uID = parseInt(data.uID);
 
+  // if email != '':
+  //   query += ' email = ?'
+  //   params += email
+
 
   let uEmail = data.email;
   let queryUpdateEmail = `UPDATE Users SET email = ? WHERE Users.userID = ?`;
@@ -180,7 +227,6 @@ app.put('/put-user-ajax', function(req,res,next){
                 } 
                 else {
                     res.send(rows);
-                    
                 }
             })
         }
