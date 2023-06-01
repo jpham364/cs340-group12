@@ -43,6 +43,63 @@ app.get('/', function(req, res){
 
 });
 
+
+// This is for review
+app.get('/review', function(req, res){
+
+    let query1;
+
+    query1 = "SELECT * FROM Reviews";
+
+    // This is for the drop down menu, the same for both cases
+    let query2 = "SELECT reviewID FROM Reviews;";
+
+    db.pool.query(query1, function(error, rows, fields){
+         
+        // {data: rows}
+        // This sends the renderer an object
+        // where 'data' is equal to 'rows' we 
+        // got from the query
+        let reviews = rows;
+
+        // res.render('partials/users',{data: users});
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save user IDs
+            let reviewIDs = rows;
+            return res.render('partials/review', {data: reviews, reviews: reviewIDs});
+        })
+
+
+
+    })
+
+});
+
+
+app.delete('/delete-review-ajax/', function(req,res,next){
+    let data = req.body;
+    let reviewID = parseInt(data.reviewID);
+    let delete_review = `DELETE FROM Reviews WHERE reviewID = ?`;
+  
+  
+          // Run the 1st query
+          db.pool.query(delete_review, [reviewID], function(error, rows, fields){
+              if (error) {
+                  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                  console.log(error);
+                  res.sendStatus(400);
+              }
+  
+              else
+              {
+              
+                  res.sendStatus(204);
+                  
+              }
+  })});
+
+
 // This is for equipment 
 app.get('/equipment', function(req, res){
 
@@ -137,7 +194,7 @@ app.post('/add-equipment-ajax', function(req, res){
     })
 
 
-})
+});
 
 
 app.delete('/delete-equipment-ajax/', function(req,res,next){
@@ -363,8 +420,20 @@ app.post('/add-order-ajax', function(req, res){
     let data = req.body;
 
     // Create query and run it on database
-    let query1 = `INSERT INTO Orders(userID, orderDate, numItems, totalCost) 
-                   VALUES ("${data['userID']}", "${data['orderDate']}", "${data['numItems']}", "${data['totalCost']}")`;
+    let query1 = `INSERT INTO Orders
+    (
+        userID, 
+        orderDate, 
+        numItems, 
+        totalCost
+    ) 
+    VALUES 
+    (
+        "${data['userID']}", 
+        "${data['date']}", 
+        "${data['numItems']}", 
+        "${data['cost']}")`;
+
     db.pool.query(query1, function(error, rows, fields){
 
          // Check to see if there was an error

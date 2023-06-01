@@ -1,0 +1,238 @@
+<main class="content">
+            <aside class="filter-equipment">
+                <h2>OrderEquipment</h2>
+
+
+                <div class="table-contents">
+                    <table border="5" cellpadding="10">
+                        {{!-- <tr>
+                            <th>Order ID</th>
+                            <th>Equipment Id</th>
+                            <th>Amount</th>
+                            <th>Cost</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>5</th>
+                            <th>2250.00</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>3</th>
+                            <th>1</th>
+                            <th>20.00</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>2</th>
+                            <th>660.00</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>3</th>
+                            <th>60.00</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>40.00</th>
+                        </tr> --}}
+
+                        <!-- This is for the first row, print the keys -->
+                        <thead>
+
+                            
+                            <tr>
+                                {{#each data.[0]}}
+                                    <th>
+                                        {{@key}}
+
+                                    </th>
+                                {{/each}}
+                                <th>Deletes</th>
+                            </tr>
+                            
+                        </thead>
+
+                        <!-- Body section -->
+                        <tbody>
+
+                            {{#each data}}
+                            <tr data-value={{this.OrderEquipment}}>
+                                <td>{{this.orderID}}</td>
+                                <td>{{this.equipmentID}}</td>
+                                <td>{{this.amount}}</td>
+                                <td>{{this.cost }}</td>
+                                <td><button onclick="deleteEquipment({{this.equipmentID}})">Delete</button></td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </aside>
+        </main>
+
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div id="update" style="display: block">
+            <form class="addOrderEquipment">
+                <legend><strong>Add OrderEquipment</strong></legend>
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Order ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Equipment ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-text" class="filter-input-label">Equipment Amount</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="AddOrderEquipment" value="Update OrderEquipment">
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+        </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div class="delete-review-content">
+            <div id="delete" style="display: block">
+                <form class="deleteReview">
+                    <legend><strong>Delete OrderEquipment</strong></legend>
+                        <div class="delete-OrderEquipment-container">
+                            <label for="filter-user" class="filter-input-label">Order ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="delete-OrderEquipment-container">
+                            <label for="filter-user" class="filter-input-label">Equipment ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteReview" value="Delete OrderEquipment">
+                    <input class="btn" type="button" value="Cancel" >
+                </form>  
+            </div><!-- delete -->
+        </div>
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div id="update" style="display: block">
+            <form class="addOrderEquipment">
+                <legend><strong>Update EquipmentID</strong></legend>
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Select Order ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>  
+                    
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Select Equipment ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Reassign Equipment ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">NULL</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                <input class="btn" type="submit" id="UpdateOrderEquipment" value="Update EquipmentID">
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+        </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div id="update" style="display: block">
+            <form class="updateAmount">
+                <legend><strong>Update Amount</strong></legend>
+                    <div class="update-amount-container">
+                        <label for="filter-user" class="filter-input-label">Equipment ID</label>
+                        <div class="filter-input-element">
+                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <option selected value="">Choose a number</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="update-amount-container">
+                        <label for="filter-text" class="filter-input-label">Update Amount</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="UpdateAmount" value="Update Amount">
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+        </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->

@@ -1,0 +1,163 @@
+<main class="content">
+            <aside class="filter-equipment">
+                <h2>Reviews</h2>
+
+                <div class="table-contents">
+                    <table border="5" cellpadding="10" id="review-table">
+                        {{!-- <tr>
+                            <th>Review ID</th>
+                            <th>User ID</th>
+                            <th>Equipment ID</th>
+                            <th>Review Description</th>
+                            <th>Stars</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>3</th>
+                            <th>1</th>
+                            <th>This equipment is really amazing and I really love it. I would recommend to others.</th>
+                            <th>4</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>This equipment is alright. It is just good for running.</th>
+                            <th>2</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>This equipment is bad. Only good for stretching but you can just stretch on the floor.</th>
+                            <th>1</th>
+                        </tr> --}}
+
+                        <!-- This is for the first row, print the keys -->
+                        <thead>
+
+                            
+                            <tr>
+                                {{#each data.[0]}}
+                                    <th>
+                                        {{@key}}
+
+                                    </th>
+                                {{/each}}
+                                <th>Deletes</th>
+                            </tr>
+                            
+                        </thead>
+
+                        <!-- Body section -->
+                        <tbody>
+
+                            {{#each data}}
+                            <tr data-value={{this.reviewID}}>
+                                <td>{{this.reviewID}}</td>
+                                <td>{{this.userID}}</td>
+                                <td>{{this.equipmentID}}</td>
+                                <td>{{this.reviewDescription}}</td>
+                                <td>{{this.stars}}</td>
+                                <td><button onclick="deleteReview({{this.reviewID}})">Delete</button></td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                    <script src="./js/review/delete_review.js"></script>
+
+                </div>
+            </aside>
+        </main>
+
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        <div id="insert" style="display: block">
+            <form id="add-review-form-ajax" class="addReview">
+                <legend><strong>Add Review</strong></legend>
+                    <div class="add-review-container">
+                        <label for="filter-user" class="filter-input-label">User</label>
+                        <div class="filter-input-element">
+
+                            <select id="filter-user" class="filter-input" name="filter-user">
+
+                            <option selected value="">Choose a user ID</option>
+                            {{#each userData}}
+                            <option name = "filter-user-drop" value="{{this.userID}}">{{this.userID}}</option>
+                            {{/each}}
+
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="add-review-container">
+                        <label for="filter-user" class="filter-input-label">User</label>
+                        <div class="filter-input-element">
+
+                            <select id="filter-user" class="filter-input" name="filter-user">
+
+                            <option selected value="">Choose an equipment ID </option>
+                            {{#each equipData}}
+                            <option name = "filter-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                            {{/each}}
+
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="add-review-container">
+                        <label for="filter-text" class="filter-input-label">Review</label>
+                        <div class="filter-input-element">
+                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                        </div>
+                    </div>
+
+                    <div class="add-review-container">
+                        <label for="filter-text" class="filter-input-label">Stars</label>
+                        <div class="filter-input-element">
+                            <select id="stars-select" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+              
+                <input class="btn" type="submit" id="UpdateReview" value="Update Review">
+                <input class="btn" type="button" value="Cancel" >
+            </form> 
+        </div><!-- update -->
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+
+        {{!-- <div class="delete-review-content">
+            <div id="delete" style="display: block">
+                <form class="deleteReview">
+                    <legend><strong>Delete Product Type</strong></legend>
+                        <div class="delete-review-container">
+                            <label for="filter-user" class="filter-input-label">User ID</label>
+                            <div class="filter-input-element">
+                                <select id="filter-user" class="filter-input" name="filter-user">
+                                <option selected value="">Choose a number</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <input class="btn" type="submit" id="DeleteReview" value="Delete Review">
+                    <input class="btn" type="button" value="Cancel" >
+                </form>  
+            </div><!-- delete -->
+        </div> --}}
+
+
+
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
+        <p>&nbsp;</p> <!-- WHITE SPACE-->
