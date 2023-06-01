@@ -1,4 +1,4 @@
-function deleteUser(eID) {
+function deleteEquipment(eID) {
     // Put our data we want to send in a javascript object
 
     let data = {

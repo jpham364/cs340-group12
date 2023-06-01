@@ -92,7 +92,7 @@ addRowToTable = (data) => {
 	let deleteButton = document.createElement("button");
 	deleteButton.innerHTML = "Delete";
 	deleteButton.onclick = function(){
-		deleteUser(newRow.userID)
+		deleteEquipment(newRow.equipmentID)
 	};
 
 	deleteCell.appendChild(deleteButton);
