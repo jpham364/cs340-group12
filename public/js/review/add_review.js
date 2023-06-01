@@ -7,31 +7,29 @@ addReview.addEventListener("submit", function(e){
 	e.preventDefault();
 
 	// get form fields
-	let inputFName = document.getElementById("input-fName");
-    let inputLName = document.getElementById("input-lName");
-    let inputAddress = document.getElementById("input-address");
-    let inputPNumber = document.getElementById("input-pNumber");
-    let inputEmail = document.getElementById("input-email");
+	let inputUID = document.getElementById("userSelect");
+    let inputEID = document.getElementById("equipmentSelect");
+    let inputReview = document.getElementById("input-review");
+    let inputStars = document.getElementById("stars-select");
+    // let inputEmail = document.getElementById("input-email");
 
 	// get values inside of them
-	let fNameValue = inputFName.value;
-    let lNameValue = inputLName.value;
-    let addressValue = inputAddress.value;
-    let pNumberValue = inputPNumber.value;
-    let emailValue = inputEmail.value;
+	let userIDValue = inputUID.value;
+    let equipmentIDValue = inputEID.value;
+    let reviewValue = inputReview.value;
+    let starsValue = inputStars.value;
 
     // place data we want to snd in a javascript object
     let data = {
-        fName: fNameValue,
-        lName: lNameValue,
-        address: addressValue,
-        pNumber: pNumberValue,
-        email: emailValue
+        rUserID: userIDValue,
+        rEquipmentID: equipmentIDValue,
+        rReviewValue: reviewValue,
+        rStarsValue: starsValue
     }
 
     // Setup AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-user-ajax", true);
+    xhttp.open("POST", "/add-review-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell AJAX request how to resolve
@@ -41,11 +39,11 @@ addReview.addEventListener("submit", function(e){
             addRowToTable(xhttp.response);
 
             // Clear input fields
-            inputFName.value = '';
-            inputLName.value = '';
-            inputAddress.value = '';
+            inputUID.value = '';
+            inputEID.value = '';
+            inputReview.value = '';
             inputPNumber.value = '';
-            inputEmail.value = '';
+            inputStars.value = '';
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("Error with input!");
         }
@@ -59,7 +57,7 @@ addReview.addEventListener("submit", function(e){
 addRowToTable = (data) => {
 
 	// get reference to current table on page and clear
-	let currTable = document.getElementById("users-table");
+	let currTable = document.getElementById("review-table");
 
 	// get location where we would insert new row
 	let newRowIndex = currTable.rows.length;
@@ -71,22 +69,20 @@ addRowToTable = (data) => {
 	// create row and 5 cells
 	let row = document.createElement("tr");
 	let idCell = document.createElement("td")
-	let fNameCell = document.createElement("td")
-	let lNameCell = document.createElement("td")
-	let addressCell = document.createElement("td")
-	let pNumberCell = document.createElement("td")
-	let emailCell = document.createElement("td")
+	let uidCell = document.createElement("td")
+	let eidCell = document.createElement("td")
+	let reviewCell = document.createElement("td")
+	let starsCell = document.createElement("td")
 
 	let deleteCell = document.createElement("td");
 
 
 	// fill with cells with correct data
-	idCell.innerText = newRow.userID;
-	fNameCell.innerText = newRow.firstName;
-	lNameCell.innerText = newRow.lastName;
-	addressCell.innerText = newRow.address;
-	pNumberCell.innerText = newRow.phoneNumber;
-	emailCell.innerText = newRow.email;
+	idCell.innerText = newRow.reviewID;
+	uidCell.innerText = newRow.userID;
+	eidCell.innerText = newRow.equipmentID;
+	reviewCell.innerText = newRow.reviewDescription;
+	starsCell.innerText = newRow.stars;
 
 	// Used chat GPT to help append button
 	let deleteButton = document.createElement("button");
@@ -99,23 +95,21 @@ addRowToTable = (data) => {
 
 
 	row.appendChild(idCell);
-	row.appendChild(fNameCell);
-	row.appendChild(lNameCell);
-	row.appendChild(addressCell);
-	row.appendChild(pNumberCell);
-	row.appendChild(emailCell);
-	row.appendChild(deleteCell);
+	row.appendChild(uidCell);
+	row.appendChild(eidCell);
+	row.appendChild(reviewCell);
+	row.appendChild(starsCell);
 
-	row.setAttribute('data-value', newRow.userID);
+	row.setAttribute('data-value', newRow.reviewID);
 
 	// Add new row to table
 	currTable.appendChild(row);
 
 	// updating menu
-	let selectMenu = document.getElementById("IDSelect");
-	let option = document.createElement("option");
-	option.value = newRow.userID;
-	selectMenu.add(option);
+	// let selectMenu = document.getElementById("IDSelect");
+	// let option = document.createElement("option");
+	// option.value = newRow.userID;
+	// selectMenu.add(option);
 
 }
 
