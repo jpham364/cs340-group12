@@ -1,53 +1,67 @@
 <main class="content">
             <aside class="filter-equipment">
-                <h2>Equipment</h2>
+                
+                
+                <form id="search-p-t" method='GET' action='/equipment'>
+                    <h2>Equipment</h2>
+                    <label for="productTypeFilter">Filter by Product Type:</label>
+                    <select id="productTypeFilter">
 
-                <label for="productTypeFilter">Filter by Product Type:</label>
-                <select id="productTypeFilter">
-                    <option value="0">All</option>
-                    <option value="1">Weight Machines</option>
-                    <option value="2">Free Weights</option>
-                    <option value="3">Cardio</option>
-                    <option value="4">Home-Gym Systems</option>
-                    <option value="5">Accessories</option>
-                </select>
+                        <option value="">All</option>
+                        {{#each ptData}}
+                        <option name = "filter-user-drop" value="{{this.typeDescription}}">{{this.typeDescription}}</option>
+                        {{/each}}
+                        
+                    </select>
+
+                    <input type="submit" value = "Filter!">
+                </form>
 
                 <p>&nbsp;</p>
 
                 <div class="table-contents">
                     <table border="5" cellpadding="10" id="equipment-table">
-                        <tr>
-                            <th>Equipment ID </th>
-                            <th>Equipment Name</th>
-                            <th>Equipment Description</th>
-                            <th>Equipment Cost</th>
-                            <th>Equipment Stock</th>
-                            <th>Product Type</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>Squat Rack</th>
-                            <th>A metal rack or cage consisting of support pillars with adjustable bars and hooks</th>
-                            <th>450.00</th>
-                            <th>21</th>
-                            <th>2</th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>Treadmill</th>
-                            <th>For indoor use that simulates walking, jogging, or running</th>
-                            <th>330.00</th>
-                            <th>11</th>
-                            <th>3</th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th>Yoga Mat</th>
-                            <th>For your yoga classes!</th>
-                            <th>20.00</th>
-                            <th>30</th>
-                            <th>5</th>
-                        </tr>
+                        
+
+                        <!-- This is for the first row, print the keys -->
+                        <thead>
+
+                            
+                            <tr>
+                                {{#each data.[0]}}
+                                    <th>
+                                        {{@key}}
+
+                                    </th>
+                                {{/each}}
+                                <th>Deletes</th>
+                            </tr>
+                            
+                        </thead>
+
+                        <!-- Body section -->
+                        <tbody>
+
+                            {{#each data}}
+                            <tr data-value={{this.equipmentID}}>
+                                <td>{{this.equipmentID}}</td>
+                                <td>{{this.equipmentName}}</td>
+                                <td>{{this.equipmentDescription}}</td>
+                                <td>{{this.equipmentCost}}</td>
+                                <td>{{this.equipmentStock}}</td>
+                                <td>{{this.productTypeID}}</td>
+                                <td><button onclick="deleteUser({{this.equipmentID}})">Delete</button></td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+
+
+
+
+
+
+
                     </table>
                 </div>
             </aside>
@@ -146,28 +160,4 @@
             </form> 
         </div><!-- update -->
 
-        <p>&nbsp;</p> <!-- WHITE SPACE-->
-
-        <div class="delete-equipment-content">
-            <div id="delete" style="display: block">
-                <form class="deleteEquipment">
-                    <legend><strong>Delete Equipment</strong></legend>
-                        <div class="delete-equipment-container">
-                            <label for="filter-user" class="filter-input-label">User ID</label>
-                            <div class="filter-input-element">
-                                <select id="filter-user" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                </select>
-                            </div>
-                        </div>  
-                    <input class="btn" type="submit" id="DeleteEquipment" value="Delete Equipment">
-                    <input class="btn" type="button" value="Cancel" >
-                </form>  
-            </div><!-- delete -->
-        </div>
-
-          <p>&nbsp;</p> <!-- WHITE SPACE-->
-          <p>&nbsp;</p> <!-- WHITE SPACE-->
+     
