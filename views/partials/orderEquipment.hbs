@@ -66,8 +66,8 @@
                                 <td>{{this.orderID}}</td>
                                 <td>{{this.equipmentID}}</td>
                                 <td>{{this.amount}}</td>
-                                <td>{{this.cost }}</td>
-                                <td><button onclick="deleteEquipment({{this.equipmentID}})">Delete</button></td>
+                                <td>{{this.cost}}</td>
+                                <td><button onclick="deleteOrderEquipment({{this.equipmentID}}, {{this.orderID}})">Delete</button></td>
                             </tr>
                             {{/each}}
 
@@ -88,11 +88,13 @@
                         <label for="filter-user" class="filter-input-label">Order ID</label>
                         <div class="filter-input-element">
                             <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                                <option selected value="">Choose Order ID</option>
+
+                                {{#each data1}}
+                                <option name = "add-user-drop" value="{{this.orderID}}">{{this.orderID}}</option>
+                                {{/each}}
+                                
+
                             </select>
                         </div>
                     </div>
@@ -101,11 +103,10 @@
                         <label for="filter-user" class="filter-input-label">Equipment ID</label>
                         <div class="filter-input-element">
                             <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option selected value="">Choose equipment ID</option>
+                                {{#each data2}}
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>  
@@ -124,39 +125,6 @@
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
-        <div class="delete-review-content">
-            <div id="delete" style="display: block">
-                <form class="deleteReview">
-                    <legend><strong>Delete OrderEquipment</strong></legend>
-                        <div class="delete-OrderEquipment-container">
-                            <label for="filter-user" class="filter-input-label">Order ID</label>
-                            <div class="filter-input-element">
-                                <select id="filter-user" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                </select>
-                            </div>
-                        </div>  
-                        <div class="delete-OrderEquipment-container">
-                            <label for="filter-user" class="filter-input-label">Equipment ID</label>
-                            <div class="filter-input-element">
-                                <select id="filter-user" class="filter-input" name="filter-user">
-                                <option selected value="">Choose a number</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                </select>
-                            </div>
-                        </div>  
-                    <input class="btn" type="submit" id="DeleteReview" value="Delete OrderEquipment">
-                    <input class="btn" type="button" value="Cancel" >
-                </form>  
-            </div><!-- delete -->
-        </div>
-
-        <p>&nbsp;</p> <!-- WHITE SPACE-->
 
         <div id="update" style="display: block">
             <form class="addOrderEquipment">
