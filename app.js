@@ -705,7 +705,7 @@ app.get('/orderEquipment', function(req, res){
 
                 // save equipment IDs
                 let equipmentIDs = rows;
-                return res.render('partials/orderEquipment', {data: orderEquipments, data1: orderIDs, data2: equipmentIDs});
+                return res.render('partials/OrderEquipment', {data: orderEquipments, data1: orderIDs, data2: equipmentIDs});
             })
 
             
@@ -714,6 +714,60 @@ app.get('/orderEquipment', function(req, res){
 
 
     })
+
+});
+
+
+app.post('/add-OrderEquipment-ajax', function(req, res){
+
+    // Capture incoming data and parse into JS object
+    let data = req.body;
+
+    // Create query and run it on database
+    let query1 = `INSERT INTO OrderEquipment(
+
+        orderID,
+        equipmentID,
+        amount,
+        cost
+    
+        )
+        VALUES
+        (
+            "${data['oID']}",
+            "${data['eID']}",
+            "${data['OEAmount']}",
+            (SELECT equipmentCost FROM Equipment WHERE equipmentID = "${data['eID']}") * amount
+            
+        )`;
+
+
+    db.pool.query(query1, function(error, rows, fields){
+
+         // Check to see if there was an error
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else{
+
+            query2 = `SELECT * FROM OrderEquipment;`;
+            db.pool.query(query2, function(error, rows, field){
+
+                if(error){
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else{
+                    res.send(rows);
+                }
+            })
+        }
+
+    });
 
 });
 
