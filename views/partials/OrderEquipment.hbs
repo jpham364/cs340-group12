@@ -4,48 +4,10 @@
 
 
                 <div class="table-contents">
-                    <table border="5" cellpadding="10">
-                        {{!-- <tr>
-                            <th>Order ID</th>
-                            <th>Equipment Id</th>
-                            <th>Amount</th>
-                            <th>Cost</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>5</th>
-                            <th>2250.00</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>3</th>
-                            <th>1</th>
-                            <th>20.00</th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>2</th>
-                            <th>660.00</th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>3</th>
-                            <th>60.00</th>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>40.00</th>
-                        </tr> --}}
-
-                        <!-- This is for the first row, print the keys -->
+                    <table border="5" cellpadding="10" id="Order-Equipment-table">
+                    
                         <thead>
 
-                            
                             <tr>
                                 {{#each data.[0]}}
                                     <th>
@@ -82,14 +44,14 @@
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
         <div id="update" style="display: block">
-            <form class="addOrderEquipment">
+            <form id="add-Order-Equipment-form-ajax" class="addOrderEquipment">
                 <legend><strong>Add OrderEquipment</strong></legend>
                     <div class="add-OrderEquipment-container">
                         <label for="filter-user" class="filter-input-label">Order ID</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
+                            <select id="orderIDSelect" class="filter-input" name="filter-user">
+                               
                                 <option selected value="">Choose Order ID</option>
-
                                 {{#each data1}}
                                 <option name = "add-user-drop" value="{{this.orderID}}">{{this.orderID}}</option>
                                 {{/each}}
@@ -100,12 +62,12 @@
                     </div>
                     
                     <div class="add-OrderEquipment-container">
-                        <label for="filter-user" class="filter-input-label">Equipment ID</label>
+                        <label for="filter-user" class="filter-input-label">Equipment</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose equipment ID</option>
+                            <select id="equipmentIDSelect" class="filter-input" name="filter-user">
+                            <option selected value="">Choose equipment</option>
                                 {{#each data2}}
-                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -114,13 +76,14 @@
                     <div class="add-OrderEquipment-container">
                         <label for="filter-text" class="filter-input-label">Equipment Amount</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="input-amount" id="input-amount" class="filter-input">
                         </div>
                     </div>
               
-                <input class="btn" type="submit" id="AddOrderEquipment" value="Update OrderEquipment">
+                <input class="btn" type="submit" id="AddOrderEquipment" value="Add OrderEquipment">
                 <input class="btn" type="button" value="Cancel" >
             </form> 
+            <script src="./js/OrderEquipment/add_OrderEquipment.js"></script>
         </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
