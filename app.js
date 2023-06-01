@@ -48,7 +48,6 @@ app.get('/equipment', function(req, res){
 
     let query1;
 
-    
     query1 = `SELECT * FROM Equipment;`;
 
 
