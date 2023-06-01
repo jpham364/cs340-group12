@@ -74,7 +74,7 @@ CREATE TABLE Equipment(
 );
 
 CREATE TABLE ProductType(
-    productTypeID int NOT NULL,
+    productTypeID int AUTO_INCREMENT NOT NULL UNIQUE,
     typeDescription varchar(50) NOT NULL,
     PRIMARY KEY (productTypeID)
 );
