@@ -53,8 +53,10 @@ CREATE TABLE OrderEquipment(
     cost decimal(19,2) NOT NULL,
 
     
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
+        ON DELETE CASCADE,
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+        ON DELETE CASCADE
 
 );
 

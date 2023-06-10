@@ -449,19 +449,18 @@ app.get('/order', function(req, res){
     // let query1 = "SELECT * FROM Users;";
     let query1;
 
-    // If there is no query string, we perform simple SELECT
-    // if(req.query.fname === undefined){
+   
     query1 = "SELECT * FROM Orders";
-    // }
-
-    // else{
-    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
-    // }
+   
+    
 
 
 
     // This is for the drop down menu, the same for both cases
     let query2 = "SELECT orderID FROM Orders;";
+
+
+    let query3 = "SELECT * FROM Users"
 
     db.pool.query(query1, function(error, rows, fields){
          
@@ -476,7 +475,16 @@ app.get('/order', function(req, res){
 
             // Save user IDs
             let orderIDs = rows;
-            return res.render('partials/order', {data: orders, orders: orderIDs});
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let userIDs = rows;
+
+                return res.render('partials/order', {data: orders, orders: orderIDs, uID: userIDs});
+
+            })
+
+            
         })
 
 
@@ -501,10 +509,10 @@ app.post('/add-order-ajax', function(req, res){
     ) 
     VALUES 
     (
-        "${data['userID']}", 
+        "${data['uID']}", 
         "${data['date']}", 
-        "${data['numItems']}", 
-        "${data['cost']}")`;
+        "0", 
+        "0")`;
 
     db.pool.query(query1, function(error, rows, fields){
 
