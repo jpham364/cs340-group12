@@ -84,7 +84,7 @@ addRowToTable = (data) => {
 	let deleteButton = document.createElement("button");
 	deleteButton.innerHTML = "Delete";
 	deleteButton.onclick = function(){
-		deleteOrderEquipment(newRow.equipmentID, newRow.orderID)
+		deleteOrderEquipment(newRow.orderID, newRow.equipmentID)
 	};
 
 	deleteCell.appendChild(deleteButton);
@@ -97,10 +97,12 @@ addRowToTable = (data) => {
 
 	row.appendChild(deleteCell);
 
-	row.setAttribute('data-value', newRow.OrderEquipment);
+	row.setAttribute('data-value', (newRow.orderID + newRow.equipmentID));
 
 	// Add new row to table
 	currTable.appendChild(row);
+
+	location.reload()
 
 	// // updating menu
 	// let selectMenu = document.getElementById("IDSelect");

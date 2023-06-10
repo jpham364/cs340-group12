@@ -53,12 +53,28 @@ CREATE TABLE OrderEquipment(
     cost decimal(19,2) NOT NULL,
 
     
-    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
-        ON DELETE SET NULL,
+    FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID),
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
-        ON DELETE CASCADE
 
 );
+
+-- Create Trigger
+-- Sources: https://docs.oracle.com/cd/E17781_01/appdev.112/e18147/tdddg_triggers.htm#TDDDG50000
+-- https://mariadb.com/kb/en/trigger-overview/
+-- https://www.w3resource.com/mysql/mysql-triggers.php
+-- This source helped me how to handle a update trigger that would trigger another update, which was giving me some issues
+-- https://dba.stackexchange.com/questions/20328/trigger-to-update-after-update
+
+-- Update the new Cost, while multiplying the potential changed amount or equipment ID
+-- This results in the NEW prefixes for these values
+
+CREATE TRIGGER update_prices_EID
+BEFORE UPDATE ON OrderEquipment
+FOR EACH ROW
+SET NEW.cost = (NEW.amount) * (SELECT equipmentCost FROM Equipment WHERE equipmentID = NEW.equipmentID);
+
+
+
 
 
 CREATE TABLE Equipment(

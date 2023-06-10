@@ -772,6 +772,82 @@ app.post('/add-OrderEquipment-ajax', function(req, res){
 });
 
 
+app.delete('/delete-Order-Equipment-ajax/', function(req,res,next){
+    let data = req.body;
+    let orderID = parseInt(data.orderID)
+    let equipmentID = parseInt(data.equipmentID)
+    let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = ?`;
+
+    // console.log(orderID)
+    // console.log(equipmentID)
+    // run query
+    db.pool.query(delete_OrderEquipment, [orderID, equipmentID], function(error, rows, fields){
+
+        if(error){
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else{
+            
+            res.sendStatus(204);
+        }
+
+    })
+})
+
+app.put('/put-equipmentID-ajax', function(req,res,next){
+
+    let data = req.body;
+
+    let updateEID = parseInt(data.assignEID);
+    let selectOID = parseInt(data.selectOID);
+    let selectEID = parseInt(data.selectEID);
+    
+
+    let queryUpdateEID = `UPDATE OrderEquipment SET OrderEquipment.equipmentID = ? WHERE (OrderEquipment.orderID = ? AND OrderEquipment.equipmentID = ?);`
+    
+
+    db.pool.query(queryUpdateEID, [updateEID, selectOID, selectEID], function(error, rows, fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+    
+        }
+
+        else{
+            res.send(rows);
+        }
+    })
+
+})
+
+app.put('/put-amount-ajax', function(req,res,next){
+
+    let data = req.body;
+
+    
+    let selectOID = parseInt(data.amOID);
+    let selectEID = parseInt(data.amEID);
+    let updateAmount = parseInt(data.upAm);
+    
+
+    let queryUpdateAmount = `UPDATE OrderEquipment SET OrderEquipment.amount = ? WHERE (OrderEquipment.orderID = ? AND OrderEquipment.equipmentID = ?);`
+    
+
+    db.pool.query(queryUpdateAmount, [updateAmount, selectOID, selectEID], function(error, rows, fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400);
+    
+        }
+
+        else{
+            res.send(rows);
+        }
+    })
+
+})
 
 /*
     LISTENER
