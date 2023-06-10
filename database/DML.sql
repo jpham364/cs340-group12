@@ -167,7 +167,7 @@ WHERE phoneNumber = :newPhoneNumber
 -- Update Equipment ID
 UPDATE OrderEquipment
 SET equipmentID = (select equipmentID from OrderEquipment where :order_id_from_table and :equipmentID_from_table)
-WHERE equipmentID = :specified_value
+WHERE OrderEquipment.equipmentID = :specified_value
 
 
 

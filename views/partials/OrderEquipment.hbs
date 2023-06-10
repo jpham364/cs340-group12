@@ -4,7 +4,7 @@
 
 
                 <div class="table-contents">
-                    <table border="5" cellpadding="10" id="Order-Equipment-table">
+                    <table border="5" cellpadding="5" id="Order-Equipment-table">
                     
                         <thead>
 
@@ -24,18 +24,20 @@
                         <tbody>
 
                             {{#each data}}
-                            <tr data-value={{this.OrderEquipment}}>
+                            {{!-- received this idea from ChatGPT --}}
+                            <tr data-value=({{this.orderID}} + {{this.equipmentID}})>
                                 <td>{{this.orderID}}</td>
                                 <td>{{this.equipmentID}}</td>
                                 <td>{{this.amount}}</td>
                                 <td>{{this.cost}}</td>
-                                <td><button onclick="deleteOrderEquipment({{this.equipmentID}}, {{this.orderID}})">Delete</button></td>
+                                <td><button onclick="deleteOrderEquipment({{this.orderID}}, {{this.equipmentID}})">Delete</button></td>
                             </tr>
                             {{/each}}
 
                         </tbody>
 
                     </table>
+                    <script src="./js/OrderEquipment/delete_OrderEquipment.js"></script>
                 </div>
             </aside>
         </main>
@@ -51,7 +53,7 @@
                         <div class="filter-input-element">
                             <select id="orderIDSelect" class="filter-input" name="filter-user">
                                
-                                <option selected value="">Choose Order ID</option>
+                                <option selected value="">Select Order ID</option>
                                 {{#each data1}}
                                 <option name = "add-user-drop" value="{{this.orderID}}">{{this.orderID}}</option>
                                 {{/each}}
@@ -65,7 +67,7 @@
                         <label for="filter-user" class="filter-input-label">Equipment</label>
                         <div class="filter-input-element">
                             <select id="equipmentIDSelect" class="filter-input" name="filter-user">
-                            <option selected value="">Choose equipment</option>
+                            <option selected value="">Select equipment</option>
                                 {{#each data2}}
                                 <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                                 {{/each}}
@@ -90,43 +92,41 @@
 
 
         <div id="update" style="display: block">
-            <form class="addOrderEquipment">
-                <legend><strong>Update EquipmentID</strong></legend>
+
+
+            <form id="update-equipment-id-form-ajax" class="addOrderEquipment">
+                <legend><strong>Update Equipment</strong></legend>
                     <div class="add-OrderEquipment-container">
                         <label for="filter-user" class="filter-input-label">Select Order ID</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <select id="updateOIDSelect" class="filter-input" name="filter-user">
+                                <option selected value="">Select Order ID</option>
+                                {{#each data1}}
+                                    <option name = "add-user-drop" value="{{this.orderID}}">{{this.orderID}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>  
                     
                     <div class="add-OrderEquipment-container">
-                        <label for="filter-user" class="filter-input-label">Select Equipment ID</label>
+                        <label for="filter-user" class="filter-input-label">Select Equipment</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <select id="updateEIDSelect" class="filter-input" name="filter-user">
+                            <option selected value="">Select Equipment</option>
+                                {{#each data2}}
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>
 
                     <div class="add-OrderEquipment-container">
-                        <label for="filter-user" class="filter-input-label">Reassign Equipment ID</label>
+                        <label for="filter-user" class="filter-input-label">Reassign Equipment</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">NULL</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <select id="updateEIDAssign" class="filter-input" name="filter-user">
+                                {{#each data2}}
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>
@@ -134,35 +134,52 @@
                 <input class="btn" type="submit" id="UpdateOrderEquipment" value="Update EquipmentID">
                 <input class="btn" type="button" value="Cancel" >
             </form> 
+
+            <script src="./js/OrderEquipment/update_OrderEquipment.js"></script>
         </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
 
         <div id="update" style="display: block">
-            <form class="updateAmount">
+            
+            <form id="update-amount-form-ajax" class="updateAmount">
                 <legend><strong>Update Amount</strong></legend>
-                    <div class="update-amount-container">
-                        <label for="filter-user" class="filter-input-label">Equipment ID</label>
+
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Select Order ID</label>
                         <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                            <select id="amountOIDSelect" class="filter-input" name="filter-user">
+                                <option selected value="">Select Order ID</option>
+                                {{#each data}}
+                                    <option name = "add-user-drop" value="{{this.orderID}}">{{this.orderID}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>  
 
+                    <div class="add-OrderEquipment-container">
+                        <label for="filter-user" class="filter-input-label">Select Equipment</label>
+                        <div class="filter-input-element">
+                            <select id="amountEIDSelect" class="filter-input" name="filter-user">
+                            <option selected value="">Select Equipment</option>
+                                {{#each data2}}
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="update-amount-container">
                         <label for="filter-text" class="filter-input-label">Update Amount</label>
                         <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
+                            <input type="text" name="filter-text" id="update-amount" class="filter-input">
                         </div>
                     </div>
               
                 <input class="btn" type="submit" id="UpdateAmount" value="Update Amount">
                 <input class="btn" type="button" value="Cancel" >
             </form> 
+             <script src="./js/OrderEquipment/update_amount.js"></script>
         </div><!-- update -->
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
