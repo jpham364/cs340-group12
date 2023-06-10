@@ -64,19 +64,45 @@ CREATE TABLE OrderEquipment(
 -- Sources: https://docs.oracle.com/cd/E17781_01/appdev.112/e18147/tdddg_triggers.htm#TDDDG50000
 -- https://mariadb.com/kb/en/trigger-overview/
 -- https://www.w3resource.com/mysql/mysql-triggers.php
+-- Used ChatGPT for debugging
+
 -- This source helped me how to handle a update trigger that would trigger another update, which was giving me some issues
 -- https://dba.stackexchange.com/questions/20328/trigger-to-update-after-update
 
 -- Update the new Cost, while multiplying the potential changed amount or equipment ID
 -- This results in the NEW prefixes for these values
 
+CREATE TRIGGER updateNI
+AFTER UPDATE ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.numItems = (SELECT sum(amount) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
+
+-- CREATE TRIGGER insertNI
+-- BEFORE INSERT ON OrderEquipment
+-- FOR EACH ROW
+-- UPDATE Orders SET numItems = 4 where orderID = NEW.orderID;
+
+CREATE TRIGGER deleteNI
+AFTER DELETE ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.numItems = (SELECT sum(amount) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
+
+CREATE TRIGGER updateTC
+AFTER UPDATE ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.totalCost = (SELECT sum(cost) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
+
+CREATE TRIGGER deleteTC
+AFTER DELETE ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.totalCost = (SELECT sum(cost) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
+
+
+
 CREATE TRIGGER update_prices_EID
 BEFORE UPDATE ON OrderEquipment
 FOR EACH ROW
 SET NEW.cost = (NEW.amount) * (SELECT equipmentCost FROM Equipment WHERE equipmentID = NEW.equipmentID);
-
-
-
 
 
 CREATE TABLE Equipment(
@@ -370,6 +396,17 @@ UPDATE Orders
 SET totalCost = (select sum(cost) from OrderEquipment where orderID 
                 IN (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23')))
 WHERE orderID = (SELECT orderID from Orders where (userID = 3 AND orderDate = '2021-04-23') );
+
+
+CREATE TRIGGER insertNI
+AFTER INSERT ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.numItems = (SELECT sum(amount) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
+
+CREATE TRIGGER insertTC
+AFTER INSERT ON OrderEquipment
+FOR EACH ROW
+UPDATE Orders SET Orders.totalCost = (SELECT sum(cost) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
 
 
 SET FOREIGN_KEY_CHECKS = 1;
