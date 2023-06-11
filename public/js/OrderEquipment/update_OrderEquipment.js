@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 let updateEquipmentIDForm = document.getElementById('update-equipment-id-form-ajax');
 
 updateEquipmentIDForm.addEventListener("submit", function(e){

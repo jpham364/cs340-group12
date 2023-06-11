@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 let addUser = document.getElementById('add-user-form-ajax');
 
 // Modify the objects we need 

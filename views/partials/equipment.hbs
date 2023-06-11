@@ -4,17 +4,7 @@
                 
                 <form id="search-p-t" method='GET' action='/equipment'>
                     <h2>Equipment</h2>
-                    {{!-- <label for="productTypeFilter">Filter by Product Type:</label>
-                    <select id="productTypeFilter">
-
-                        <option value="">All</option>
-                        {{#each ptData}}
-                        <option name = "filter-user-drop" value="{{this.productTypeID}}">{{this.typeDescription}}</option>
-                        {{/each}}
-                        
-                    </select>
-
-                    <input class="btn" type="submit" id="ptSearch"> --}}
+                   
                 </form>
 
                 <p>&nbsp;</p>
@@ -22,7 +12,7 @@
                 <div class="table-contents">
                     <table border="5" cellpadding="10" id="equipment-table">
                         
-
+                        {{!-- HBS Code is taken from NodeJS Starter App  --}}
                         <!-- This is for the first row, print the keys -->
                         <thead>
 
@@ -127,55 +117,6 @@
         </div>
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
-
-
-        {{!-- <div id="update" style="display: block">
-            <form class="updateEquipment">
-                <legend><strong>Update Equipment</strong></legend>
-                    <div class="update-equipment-container">
-                        <label for="filter-user" class="filter-input-label">Equipment</label>
-                        <div class="filter-input-element">
-                            <select id="filter-user" class="filter-input" name="filter-user">
-                            <option selected value="">Choose a number</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            </select>
-                        </div>
-                    </div>  
-
-                    <div class="update-equipment-container">
-                        <label for="filter-text" class="filter-input-label">Equipment Name</label>
-                        <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                        </div>
-                    </div>
-
-                    <div class="update-equipment-container">
-                        <label for="filter-text" class="filter-input-label">Description</label>
-                        <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                        </div>
-                    </div>
-
-                    <div class="update-equipment-container">
-                        <label for="filter-text" class="filter-input-label">Cost</label>
-                        <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                        </div>
-                    </div>
-
-                    <div class="update-equipment-container">
-                        <label for="filter-text" class="filter-input-label">Stock</label>
-                        <div class="filter-input-element">
-                            <input type="text" name="filter-text" id="filter-text" class="filter-input">
-                        </div>
-                    </div>
-              
-                <input class="btn" type="submit" id="UpdateEquipment" value="Update Equipment">
-                <input class="btn" type="button" value="Cancel" >
-            </form> 
-        </div><!-- update --> --}}
 
         <p>&nbsp;</p> <!-- WHITE SPACE-->
         <p>&nbsp;</p> <!-- WHITE SPACE-->

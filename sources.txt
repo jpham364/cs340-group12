@@ -1,0 +1,25 @@
+CS340 - Final Project Step 6 Sources
+Jonathan Pham & Leon Ong
+
+This entire project is heavily based on CS340 NodeJS Starter App Code:
+Alot of the code throughout this project is boilerplate code that are seen in the Starter App, which will 
+see alot of repetitions. Especially in app.js and the add/update/delete JS files
+https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+Triggers Reference:
+https://docs.oracle.com/cd/E17781_01/appdev.112/e18147/tdddg_triggers.htm#TDDDG50000 (showed NEW/OLD syntax)
+https://mariadb.com/kb/en/trigger-overview/ 
+https://www.w3resource.com/mysql/mysql-triggers.php
+
+This source helped me how to handle a UPDATE trigger that updates which was giving me some issues (used for cost in OrderEquipment):
+https://dba.stackexchange.com/questions/20328/trigger-to-update-after-update
+
+Documentation for location.reload();
+https://www.geeksforgeeks.org/html-dom-location-reload-method/#
+
+SQL:
+https://www.freecodecamp.org/news/sql-subquery-how-to-sub-query-in-select-statement/ (for subqueries
+Utilzing SUM to calculate the total costs
+https://www.w3schools.com/sql/sql_count_avg_sum.asp)
+
+Used ChatGPT for debugging

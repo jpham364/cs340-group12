@@ -1,3 +1,6 @@
+// JS Code is taken from NodeJS Starter App //
+
+
 let addEquipment = document.getElementById('add-equipment-form-ajax');
 
 // Modify the objects we need 

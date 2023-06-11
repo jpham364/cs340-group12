@@ -1,3 +1,6 @@
+// JS Code is taken from NodeJS Starter App //
+
+
 let addProductType = document.getElementById('add-productType-form-ajax');
 
 // Modify the objects we need 

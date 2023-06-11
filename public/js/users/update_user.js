@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 // Get the objects we need to modify
 let updatePersonForm = document.getElementById('update-user-form-ajax');
 

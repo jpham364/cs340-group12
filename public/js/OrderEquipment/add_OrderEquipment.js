@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 let addOrderEquipment = document.getElementById('add-Order-Equipment-form-ajax');
 
 // Modify the objects we need 
