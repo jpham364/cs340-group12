@@ -30,15 +30,15 @@ function deleteOrderEquipment(oID, eID) {
 
 function deleteRow(orderID, equipmentID){
 
-    let table = document.getElementById("Order-Equipment-table");
-    for (let i = 0, row; row = table.rows[i]; i++) {
-       //iterate through rows
-       //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == (orderID + equipmentID)) {
-            table.deleteRow(i);
-            break;
-       }
-    }
+    // let table = document.getElementById("Order-Equipment-table");
+    // for (let i = 0, row; row = table.rows[i]; i++) {
+    //    //iterate through rows
+    //    //rows would be accessed using the "row" variable assigned in the for loop
+    //    if (table.rows[i].getAttribute("data-value") == (orderID + equipmentID)) {
+    //         table.deleteRow(i);
+    //         break;
+    //    }
+    // }
 
     location.reload()
 }

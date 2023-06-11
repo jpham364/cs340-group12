@@ -713,6 +713,18 @@ app.get('/orderEquipment', function(req, res){
 
                 // save equipment IDs
                 let equipmentIDs = rows;
+
+                let equipmentIDsMap = {}
+                equipmentIDs.map(eID => {
+                    let id = parseInt(eID.equipmentID, 10);
+                    equipmentIDsMap[id] = eID["equipmentName"];
+                })
+
+                // overwrite equipmentID
+                orderEquipments = orderEquipments.map(oneEquipment => {
+                    return Object.assign(oneEquipment, {equipmentID: equipmentIDsMap[oneEquipment.equipmentID]});
+                })
+
                 return res.render('partials/OrderEquipment', {data: orderEquipments, data1: orderIDs, data2: equipmentIDs});
             })
 
@@ -783,11 +795,9 @@ app.post('/add-OrderEquipment-ajax', function(req, res){
 app.delete('/delete-Order-Equipment-ajax/', function(req,res,next){
     let data = req.body;
     let orderID = parseInt(data.orderID)
-    let equipmentID = parseInt(data.equipmentID)
-    let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = ?`;
+    let equipmentID = data.equipmentID
+    let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = (SELECT equipmentID FROM Equipment WHERE equipmentName = ?)`;
 
-    // console.log(orderID)
-    // console.log(equipmentID)
     // run query
     db.pool.query(delete_OrderEquipment, [orderID, equipmentID], function(error, rows, fields){
 
