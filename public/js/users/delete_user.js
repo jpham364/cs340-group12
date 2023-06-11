@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 function deleteUser(uID) {
     // Put our data we want to send in a javascript object
 

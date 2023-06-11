@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 let addReview = document.getElementById('add-review-form-ajax');
 
 // Modify the objects we need 

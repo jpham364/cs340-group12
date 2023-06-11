@@ -6,7 +6,7 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Droppinp tables
+-- Dropping tables
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS OrderEquipment;
@@ -77,11 +77,6 @@ AFTER UPDATE ON OrderEquipment
 FOR EACH ROW
 UPDATE Orders SET Orders.numItems = (SELECT sum(amount) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
 
--- CREATE TRIGGER insertNI
--- BEFORE INSERT ON OrderEquipment
--- FOR EACH ROW
--- UPDATE Orders SET numItems = 4 where orderID = NEW.orderID;
-
 CREATE TRIGGER deleteNI
 AFTER DELETE ON OrderEquipment
 FOR EACH ROW
@@ -96,8 +91,6 @@ CREATE TRIGGER deleteTC
 AFTER DELETE ON OrderEquipment
 FOR EACH ROW
 UPDATE Orders SET Orders.totalCost = (SELECT sum(cost) from OrderEquipment where OrderEquipment.orderID = Orders.orderID) WHERE orderID = Orders.orderID;
-
-
 
 CREATE TRIGGER update_prices_EID
 BEFORE UPDATE ON OrderEquipment

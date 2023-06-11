@@ -1,3 +1,5 @@
+// JS Code is taken from NodeJS Starter App //
+
 let updateAmountForm = document.getElementById('update-amount-form-ajax');
 
 updateAmountForm.addEventListener("submit", function(e){

@@ -5,6 +5,7 @@
 
 // Most of the app.js implementation is from the ecampus resource to use a node.js starter app
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
+// This entire file header is 
 
 // Step 0: set up Node.js / Express
 // Express
@@ -60,13 +61,12 @@ app.get('/review', function(req, res){
 
     db.pool.query(query1, function(error, rows, fields){
          
-        // {data: rows}
+      
         // This sends the renderer an object
-        // where 'data' is equal to 'rows' we s
-        // got from the query
+        // where 'data' is equal to 'rows' that we got from the query
         let reviews = rows;
 
-        // res.render('partials/users',{data: users});
+
         db.pool.query(query2, (error, rows, fields) => {
 
             // Save user IDs
@@ -74,16 +74,13 @@ app.get('/review', function(req, res){
 
             db.pool.query(query3, (error, rows, fields) => {
 
+                // Save the equipment IDs for the dropdown menu
                 let equipmentIDs = rows;
                 return res.render('partials/review', {data: reviews, user: userIDs, equip: equipmentIDs});
 
             })
 
-
-            
         })
-
-
 
     })
 
@@ -93,6 +90,7 @@ app.post('/add-review-ajax', function(req, res){
 
     let data = req.body;
 
+    // This query inserts a row for Reviews
     let query1 = `INSERT INTO Reviews
     (
         userID, 
@@ -119,6 +117,7 @@ app.post('/add-review-ajax', function(req, res){
 
         else{
 
+            // This is to reselect Reviews to display the new review inserted
             query2 = `SELECT * FROM Reviews`;
             db.pool.query(query2, function(error, rows, field){
 
@@ -152,6 +151,7 @@ app.delete('/delete-review-ajax/', function(req,res,next){
           // Run the 1st query
           db.pool.query(delete_review, [reviewID], function(error, rows, fields){
               if (error) {
+
                   // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                   console.log(error);
                   res.sendStatus(400);
@@ -175,7 +175,7 @@ app.get('/equipment', function(req, res){
 
     query1 = `SELECT * FROM Equipment;`;
 
-
+    // This is for the dropdown menu for addEquipment
     let query2 = `SELECT * FROM ProductType;`
 
 
@@ -189,6 +189,8 @@ app.get('/equipment', function(req, res){
             // save productType IDs
             let ptIDs = rows;
 
+            // This section of code is taken from the Github NodeJS starter app 
+            // This allows us to display ProductType as a name
             let ptIDMap = {}
             ptIDs.map(ptID => {
                 let id = parseInt(ptID.productTypeID, 10);
@@ -213,6 +215,7 @@ app.post('/add-equipment-ajax', function(req, res){
 
     let data = req.body;
 
+    // Insert Equipment row
     let query1 = `INSERT INTO Equipment
     (
         equipmentName, 
@@ -241,6 +244,7 @@ app.post('/add-equipment-ajax', function(req, res){
 
         else{
 
+            // This reselects Equipment in order to display the new row
             query2 = `SELECT * FROM Equipment`;
             db.pool.query(query2, function(error, rows, field){
 
@@ -268,6 +272,8 @@ app.post('/add-equipment-ajax', function(req, res){
 app.delete('/delete-equipment-ajax/', function(req,res,next){
     let data = req.body;
     let equipmentID = parseInt(data.equipmentID);
+
+    // Delete an equipment row
     let delete_equipment= `DELETE FROM Equipment WHERE equipmentID = ?`;
   
   
@@ -293,19 +299,19 @@ app.delete('/delete-equipment-ajax/', function(req,res,next){
 *///////////////////////
 app.get('/users', function(req, res){
 
-    // let query1 = "SELECT * FROM Users;";
+
     let query1;
 
+    // This section of the code is used from the CS340 Starter App Code
     // If there is no query string, we perform simple SELECT
     if(req.query.fname === undefined){
         query1 = `SELECT * FROM Users`;
     }
 
+    // Else, select rows only with their first name matching the user input
     else{
         query1 = `SELECT * FROM Users WHERE firstName LIKE "${req.query.fname}%"`
     }
-
-
 
     // This is for the drop down menu, the same for both cases
     let query2 = "SELECT userID FROM Users;";
@@ -352,6 +358,7 @@ app.post('/add-user-ajax', function(req, res){
 
         else{
 
+            // Select again to display new User row
             query2 = `SELECT * FROM Users;`;
             db.pool.query(query2, function(error, rows, field){
 
@@ -395,22 +402,17 @@ app.delete('/delete-user-ajax/', function(req,res,next){
 
 
 app.put('/put-user-ajax', function(req,res,next){
-  let data = req.body;
+    let data = req.body;
 
-  let uID = parseInt(data.uID);
+    let uID = parseInt(data.uID);
 
-  // if email != '':
-  //   query += ' email = ?'
-  //   params += email
-
-
-  let uEmail = data.email;
-  let queryUpdateEmail = `UPDATE Users SET email = ? WHERE Users.userID = ?`;
-  let selectEmail = `SELECT * FROM Users WHERE Users.email = ?;`
+    // This only updates the email of the user, and then updates the table to display the updated email
+    let uEmail = data.email;
+    let queryUpdateEmail = `UPDATE Users SET email = ? WHERE Users.userID = ?`;
+    let selectEmail = `SELECT * FROM Users WHERE Users.email = ?;`
 
 
     // Run the 1st query
-   
     db.pool.query(queryUpdateEmail, [uEmail, uID], function(error, rows, fields){
         if (error) {
 
@@ -446,44 +448,28 @@ app.put('/put-user-ajax', function(req,res,next){
 *///////////////////////
 app.get('/order', function(req, res){
 
-    // let query1 = "SELECT * FROM Users;";
+
     let query1;
 
-   
+    // Used to display Orders
     query1 = "SELECT * FROM Orders";
    
-    
-
-
-
-    // This is for the drop down menu, the same for both cases
-    let query2 = "SELECT orderID FROM Orders;";
-
-
-    let query3 = "SELECT * FROM Users"
+    // This is for the dropdown menu for UserIDs 
+    let query2 = "SELECT * FROM Users"
 
     db.pool.query(query1, function(error, rows, fields){
          
-        // {data: rows}
+
         // This sends the renderer an object
         // where 'data' is equal to 'rows' we 
         // got from the query
         let orders = rows;
 
-        // res.render('partials/users',{data: users});
         db.pool.query(query2, (error, rows, fields) => {
 
-            // Save user IDs
-            let orderIDs = rows;
+            let userIDs = rows;
 
-            db.pool.query(query3, (error, rows, fields) => {
-
-                let userIDs = rows;
-
-                return res.render('partials/order', {data: orders, orders: orderIDs, uID: userIDs});
-
-            })
-
+            return res.render('partials/order', {data: orders, uID: userIDs});
             
         })
 
@@ -493,13 +479,13 @@ app.get('/order', function(req, res){
 
 });
 
-// Step 5 Adding New Data
+
 app.post('/add-order-ajax', function(req, res){
 
     // Capture incoming data and parse into JS object
     let data = req.body;
 
-    // Create query and run it on database
+    // Create query and run it on database (inserting order)
     let query1 = `INSERT INTO Orders
     (
         userID, 
@@ -524,6 +510,7 @@ app.post('/add-order-ajax', function(req, res){
 
         else{
 
+            // Submit second query to display new Order
             query2 = `SELECT * FROM Orders;`;
             db.pool.query(query2, function(error, rows, field){
 
@@ -552,6 +539,7 @@ app.delete('/delete-order-ajax/', function(req,res,next){
           // Run the 1st query
           db.pool.query(delete_order, [orderID], function(error, rows, fields){
               if (error) {
+
                   // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                   console.log(error);
                   res.sendStatus(400);
@@ -572,40 +560,19 @@ app.delete('/delete-order-ajax/', function(req,res,next){
 
 app.get('/productType', function(req, res){
 
-    // let query1 = "SELECT * FROM Users;";
     let query1;
 
-    // If there is no query string, we perform simple SELECT
-    // if(req.query.fname === undefined){
     query1 = "SELECT * FROM ProductType";
-    // }
-
-    // else{
-    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
-    // }
-
-
-
-    // This is for the drop down menu, the same for both cases
-    let query2 = "SELECT productTypeID FROM ProductType;";
 
     db.pool.query(query1, function(error, rows, fields){
          
-        // {data: rows}
         // This sends the renderer an object
         // where 'data' is equal to 'rows' we 
         // got from the query
-        let productTypes = rows;
-
-        // res.render('partials/users',{data: users});
-        db.pool.query(query2, (error, rows, fields) => {
-
-            // Save user IDs
-            let productTypeIDs = rows;
-            return res.render('partials/productType', {data: productTypes, productTypes: productTypeIDs});
-        })
-
-
+        let productTypes = rows;   
+      
+        return res.render('partials/productType', {data: productTypes});
+        
 
     })
 
@@ -691,8 +658,6 @@ app.get('/orderEquipment', function(req, res){
     // This is the dropdown menu for EquipmentID
     let query3 = "SELECT * FROM Equipment;"
 
-    // This is for the drop down menu, the same for both cases
-    // let query2 = "SELECT productTypeID FROM ProductType;";
 
     db.pool.query(query1, function(error, rows, fields){
          
@@ -702,18 +667,18 @@ app.get('/orderEquipment', function(req, res){
         // got from the query
         let orderEquipments = rows;
 
-        // res.render('partials/orderEquipment',{data: orderEquipments});
+
         db.pool.query(query2, (error, rows, fields) => {
 
             // Save order IDs
             let orderIDs = rows;
-
 
             db.pool.query(query3, (error, rows, fields) => {
 
                 // save equipment IDs
                 let equipmentIDs = rows;
 
+                // This is to rename the equipmentID to their respective names
                 let equipmentIDsMap = {}
                 equipmentIDs.map(eID => {
                     let id = parseInt(eID.equipmentID, 10);
@@ -743,7 +708,7 @@ app.post('/add-OrderEquipment-ajax', function(req, res){
     // Capture incoming data and parse into JS object
     let data = req.body;
 
-    // Create query and run it on database
+    // Create query and run it on database (inserting OrderEquipment)
     let query1 = `INSERT INTO OrderEquipment(
 
         orderID,
@@ -772,6 +737,7 @@ app.post('/add-OrderEquipment-ajax', function(req, res){
 
         else{
 
+            // Select to display new row
             query2 = `SELECT * FROM OrderEquipment;`;
             db.pool.query(query2, function(error, rows, field){
 
@@ -796,6 +762,9 @@ app.delete('/delete-Order-Equipment-ajax/', function(req,res,next){
     let data = req.body;
     let orderID = parseInt(data.orderID)
     let equipmentID = data.equipmentID
+
+    // This query takes the orderID and then since the table is changed to its name, 
+    // We need to find the ID based on the matching name on the table. 
     let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = (SELECT equipmentID FROM Equipment WHERE equipmentName = ?)`;
 
     // run query
@@ -823,6 +792,7 @@ app.put('/put-equipmentID-ajax', function(req,res,next){
     let selectEID = parseInt(data.selectEID);
     
 
+    // This update updates a new EquipmentID based on the orderID and equipmentID that the user inputted
     let queryUpdateEID = `UPDATE OrderEquipment SET OrderEquipment.equipmentID = ? WHERE (OrderEquipment.orderID = ? AND OrderEquipment.equipmentID = ?);`
     
 
@@ -844,15 +814,13 @@ app.put('/put-amount-ajax', function(req,res,next){
 
     let data = req.body;
 
-    
     let selectOID = parseInt(data.amOID);
     let selectEID = parseInt(data.amEID);
     let updateAmount = parseInt(data.upAm);
     
-
+     // This update updates a new amount based on the orderID and equipmentID that the user inputted
     let queryUpdateAmount = `UPDATE OrderEquipment SET OrderEquipment.amount = ? WHERE (OrderEquipment.orderID = ? AND OrderEquipment.equipmentID = ?);`
     
-
     db.pool.query(queryUpdateAmount, [updateAmount, selectOID, selectEID], function(error, rows, fields){
         if (error){
             console.log(error)

@@ -1,3 +1,6 @@
+// JS Code is taken from NodeJS Starter App //
+
+
 function deleteProductType(prodID) {
     // Put our data we want to send in a javascript object
 
