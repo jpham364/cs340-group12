@@ -449,19 +449,18 @@ app.get('/order', function(req, res){
     // let query1 = "SELECT * FROM Users;";
     let query1;
 
-    // If there is no query string, we perform simple SELECT
-    // if(req.query.fname === undefined){
+   
     query1 = "SELECT * FROM Orders";
-    // }
-
-    // else{
-    //     query1 = `SELECT * FROM Orders WHERE firstName LIKE "${req.query.fname}%"`
-    // }
+   
+    
 
 
 
     // This is for the drop down menu, the same for both cases
     let query2 = "SELECT orderID FROM Orders;";
+
+
+    let query3 = "SELECT * FROM Users"
 
     db.pool.query(query1, function(error, rows, fields){
          
@@ -476,7 +475,16 @@ app.get('/order', function(req, res){
 
             // Save user IDs
             let orderIDs = rows;
-            return res.render('partials/order', {data: orders, orders: orderIDs});
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let userIDs = rows;
+
+                return res.render('partials/order', {data: orders, orders: orderIDs, uID: userIDs});
+
+            })
+
+            
         })
 
 
@@ -501,10 +509,10 @@ app.post('/add-order-ajax', function(req, res){
     ) 
     VALUES 
     (
-        "${data['userID']}", 
+        "${data['uID']}", 
         "${data['date']}", 
-        "${data['numItems']}", 
-        "${data['cost']}")`;
+        "0", 
+        "0")`;
 
     db.pool.query(query1, function(error, rows, fields){
 
@@ -705,6 +713,18 @@ app.get('/orderEquipment', function(req, res){
 
                 // save equipment IDs
                 let equipmentIDs = rows;
+
+                let equipmentIDsMap = {}
+                equipmentIDs.map(eID => {
+                    let id = parseInt(eID.equipmentID, 10);
+                    equipmentIDsMap[id] = eID["equipmentName"];
+                })
+
+                // overwrite equipmentID
+                orderEquipments = orderEquipments.map(oneEquipment => {
+                    return Object.assign(oneEquipment, {equipmentID: equipmentIDsMap[oneEquipment.equipmentID]});
+                })
+
                 return res.render('partials/OrderEquipment', {data: orderEquipments, data1: orderIDs, data2: equipmentIDs});
             })
 
@@ -775,11 +795,9 @@ app.post('/add-OrderEquipment-ajax', function(req, res){
 app.delete('/delete-Order-Equipment-ajax/', function(req,res,next){
     let data = req.body;
     let orderID = parseInt(data.orderID)
-    let equipmentID = parseInt(data.equipmentID)
-    let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = ?`;
+    let equipmentID = data.equipmentID
+    let delete_OrderEquipment = `DELETE FROM OrderEquipment WHERE orderID = ? AND equipmentID = (SELECT equipmentID FROM Equipment WHERE equipmentName = ?)`;
 
-    // console.log(orderID)
-    // console.log(equipmentID)
     // run query
     db.pool.query(delete_OrderEquipment, [orderID, equipmentID], function(error, rows, fields){
 

@@ -8,20 +8,18 @@ addOrder.addEventListener("submit", function(e){
 
 	// get form fields
     let inputDate = document.getElementById("input-date");
-    let inputNumItems = document.getElementById("input-numItems");
-    let inputCost = document.getElementById("input-cost");
+	let inputUID = document.getElementById("order-select-UID");
+
 
 	// get values inside of them
     let dateValue = inputDate.value;
-    let numItemsValue = inputNumItems.value;
-    let costValue = inputCost.value;
+	let UIDValue = inputUID.value;
 
     // place data we want to snd in a javascript object
     let data = {
         // fName: fNameValue,
         date: dateValue,
-        numItems: numItemsValue,
-        cost: costValue
+		uID: UIDValue
         // email: emailValue
     }
 
@@ -38,8 +36,8 @@ addOrder.addEventListener("submit", function(e){
 
             // Clear input fields
             inputDate.value = '';
-            inputNumItems.value = '';
-            inputCost.value = '';
+			inputUID.value = '';
+
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("Error with input!");
         }
@@ -82,7 +80,7 @@ addRowToTable = (data) => {
 	let deleteButton = document.createElement("button");
 	deleteButton.innerHTML = "Delete";
 	deleteButton.onclick = function(){
-		deleteUser(newRow.userID)
+		deleteOrder(newRow.orderID)
 	};
 
 	deleteCell.appendChild(deleteButton);
@@ -99,11 +97,8 @@ addRowToTable = (data) => {
 	// Add new row to table
 	currTable.appendChild(row);
 
-	// updating menu
-	// let selectMenu = document.getElementById("IDSelect");
-	// let option = document.createElement("option");
-	// option.value = newRow.orderID;
-	// selectMenu.add(option);
+	location.reload();
+
 
 }
 

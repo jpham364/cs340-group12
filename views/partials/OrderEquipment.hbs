@@ -30,7 +30,7 @@
                                 <td>{{this.equipmentID}}</td>
                                 <td>{{this.amount}}</td>
                                 <td>{{this.cost}}</td>
-                                <td><button onclick="deleteOrderEquipment({{this.orderID}}, {{this.equipmentID}})">Delete</button></td>
+                                <td><button onclick="deleteOrderEquipment({{this.orderID}}, '{{this.equipmentID}}')">Delete</button></td>
                             </tr>
                             {{/each}}
 
@@ -114,7 +114,7 @@
                             <select id="updateEIDSelect" class="filter-input" name="filter-user">
                             <option selected value="">Select Equipment</option>
                                 {{#each data2}}
-                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -124,8 +124,9 @@
                         <label for="filter-user" class="filter-input-label">Reassign Equipment</label>
                         <div class="filter-input-element">
                             <select id="updateEIDAssign" class="filter-input" name="filter-user">
+                                <option selected value="">Reassign Equipment</option>
                                 {{#each data2}}
-                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -163,7 +164,7 @@
                             <select id="amountEIDSelect" class="filter-input" name="filter-user">
                             <option selected value="">Select Equipment</option>
                                 {{#each data2}}
-                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentID}}</option>
+                                <option name = "add-user-drop" value="{{this.equipmentID}}">{{this.equipmentName}}</option>
                                 {{/each}}
                             </select>
                         </div>
